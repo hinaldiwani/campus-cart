@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusCart - Your Campus, Your Cart</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">CampusCart</a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products...">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <div class="nav-icons">
+                    <a href="wishlist.html" class="icon-link">
+                        <span class="icon">❤️</span>
+                        <span class="badge">0</span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <span class="icon">🛒</span>
+                        <span class="badge">0</span>
+                    </a>
+                    <a href="profile.html" class="icon-link">
+                        <span class="icon">👤</span>
+                    </a>
+                </div>
+            </nav>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-wrapper">
+                <div class="hero-content">
+                    <div class="hero-badge">New Collection</div>
+                    <h1 class="hero-title">
+                        <span class="hero-discount">50% OFF</span>
+                        On Your Campus Essentials
+                    </h1>
+                    <p class="hero-description">Discover our exclusive collection of fashion, stationery, and backpacks
+                        designed for students. Quality products at unbeatable prices!</p>
+                    <div class="hero-buttons">
+                        <a href="shop.html" class="btn btn-primary btn-large">Explore Collection</a>
+                        <a href="shop.html" class="btn btn-outline btn-large">Browse Accessories</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>200+</h3>
+                            <p>Products</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>500+</h3>
+                            <p>Happy Students</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>3</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-wrapper">
+                        <img src="../images/Women's Formal Shirt.jpg" alt="Fashion Collection" class="hero-main-image"
+                            id="heroImage">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore Popular Categories</h2>
+                <p class="section-subtitle">Find everything you need for your campus life</p>
+            </div>
+            <div class="category-grid">
+                <a href="shop-fashion.html" class="category-card">
+                    <div class="category-image">
+                        <img src="../images/Women's Formal Shirt.jpg" alt="Fashion">
+                    </div>
+                    <div class="category-info">
+                        <div class="category-icon">👕</div>
+                        <h3>Fashion</h3>
+                        <p>Formal wear & casual styles</p>
+                        <span class="category-count">4 items</span>
+                    </div>
+                </a>
+                <a href="shop-stationery.html" class="category-card">
+                    <div class="category-image">
+                        <img src="../images/Highlighter.jpg" alt="Stationery">
+                    </div>
+                    <div class="category-info">
+                        <div class="category-icon">✏️</div>
+                        <h3>Stationery</h3>
+                        <p>Notes, pens & organizers</p>
+                        <span class="category-count">4 items</span>
+                    </div>
+                </a>
+                <a href="shop-backpacks.html" class="category-card">
+                    <div class="category-image">
+                        <img src="../images/Bag.jpg" alt="Backpacks">
+                    </div>
+                    <div class="category-info">
+                        <div class="category-icon">🎒</div>
+                        <h3>Backpacks</h3>
+                        <p>Durable & stylish bags</p>
+                        <span class="category-count">1 item</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Products -->
+    <section class="trending-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Trending This Week</h2>
+                <p class="section-subtitle">Most popular items among students</p>
+            </div>
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card">
+                    <div class="product-badge">43% OFF</div>
+                    <div class="product-image">
+                        <img src="../images/Bag.jpg" alt="College Backpack">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>College Backpack</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(156)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹399</span>
+                            <span class="original-price">₹699</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Set of Books.jpg" alt="Notebook Set">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Notebook Set (5 Pack)</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(203)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹299</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Men's Formal Shirt.jpg" alt="Men's Formal Shirt">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Formal Shirt</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(189)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹399</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Women's Formal Pant.jpg" alt="Women's Formal Pant">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Women's Formal Pant</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(198)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹449</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Water Bottles.jpg" alt="Water Bottle">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Water Bottle</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(145)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹249</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Highlighter.jpg" alt="Highlighter Set">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Highlighter Set</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(167)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹199</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 7 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Desk oragainzer.jpg" alt="Desk Organizer">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Desk Organizer</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(134)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹449</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 8 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Women's Formal Shirt.jpg" alt="Women's Formal Shirt">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Women's Formal Shirt</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(178)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹399</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 9 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Men's Formal Pant.jpg" alt="Men's Formal Pant">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Men's Formal Pant</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(192)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹449</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="section-cta">
+                <a href="shop.html" class="btn btn-outline">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="special-offers">
+        <div class="container">
+            <div class="offer-banner">
+                <h2>🎉 Flash Sale! Up to 50% Off</h2>
+                <p>Limited time offer on selected items</p>
+                <a href="shop.html" class="btn btn-secondary">Shop Deals</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose CampusCart?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Free Shipping</h3>
+                    <p>On orders over ₹999</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Student Discounts</h3>
+                    <p>Exclusive deals for students</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">↩️</div>
+                    <h3>Easy Returns</h3>
+                    <p>30-day return policy</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3>24/7 Support</h3>
+                    <p>We're here to help</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated!</h2>
+            <p>Subscribe to get special offers and updates</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>CampusCart</h3>
+                    <p>Your one-stop shop for all campus needs.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html">Fashion</a></li>
+                        <li><a href="shop.html">Stationery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CampusCart. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Category images for auto-cycling
+        const categoryImages = [
+            {
+                image: '../images/Women\'s Formal Shirt.jpg',
+                alt: 'Fashion Collection'
+            },
+            {
+                image: '../images/Set of Books.jpg',
+                alt: 'Stationery Collection'
+            },
+            {
+                image: '../images/Bag.jpg',
+                alt: 'Backpack Collection'
+            },
+            {
+                image: '../images/Men\'s Formal Shirt.jpg',
+                alt: 'Men\'s Fashion'
+            },
+            {
+                image: '../images/Water Bottles.jpg',
+                alt: 'Water Bottles'
+            },
+            {
+                image: '../images/Highlighter.jpg',
+                alt: 'Highlighter Set'
+            },
+            {
+                image: '../images/Desk oragainzer.jpg',
+                alt: 'Desk Organizer'
+            },
+            {
+                image: '../images/Women\'s Formal Pant.jpg',
+                alt: 'Women\'s Fashion'
+            },
+            {
+                image: '../images/Men\'s Formal Pant.jpg',
+                alt: 'Men\'s Formal Pant'
+            }
+        ];
+
+        let currentImageIndex = 0;
+
+        function cycleHeroImage() {
+            const heroImage = document.getElementById('heroImage');
+
+            // Fade out
+            heroImage.style.opacity = '0';
+
+            setTimeout(() => {
+                // Move to next image
+                currentImageIndex = (currentImageIndex + 1) % categoryImages.length;
+
+                // Update image
+                heroImage.src = categoryImages[currentImageIndex].image;
+                heroImage.alt = categoryImages[currentImageIndex].alt;
+
+                // Fade in
+                heroImage.style.opacity = '1';
+            }, 500);
+        }
+
+        // Start auto-cycling every 3 seconds
+        setInterval(cycleHeroImage, 3000);
+    </script>
+</body>
+
+</html>

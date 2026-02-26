@@ -1,0 +1,108 @@
+CAMPUSCART - IMAGE REQUIREMENTS LIST
+=====================================
+
+This file lists all the images needed for the CampusCart website.
+Save your images with these exact names in an "images" folder.
+
+---
+
+FASHION CATEGORY (4 images required - Price: ₹399-₹449)
+========================================================
+1. mens-formal-shirt.jpg
+   - Description: White formal shirt for men
+   - Suggested size: 500x500px minimum
+   - Currently using: attachment:3
+
+2. womens-formal-shirt.jpg
+   - Description: White formal shirt for women
+   - Suggested size: 500x500px minimum
+   - Currently using: attachment:2
+
+3. mens-formal-pant.jpg
+   - Description: Navy blue formal pants for men
+   - Suggested size: 500x500px minimum
+   - Currently using: attachment:1
+
+4. womens-formal-pant.jpg
+   - Description: Black formal pants for women
+   - Suggested size: 500x500px minimum
+   - Currently using: attachment:0
+
+---
+
+STATIONERY CATEGORY (5 images required - Price: ₹199-₹299)
+===========================================================
+5. notebook-set.jpg
+   - Description: Set of 5 notebooks
+   - Suggested size: 500x500px minimum
+
+6. pen-set.jpg
+   - Description: Set of pens
+   - Suggested size: 500x500px minimum
+
+7. highlighter-set.jpg
+   - Description: Set of colorful highlighters
+   - Suggested size: 500x500px minimum
+
+8. water-bottle.jpg
+   - Description: Reusable water bottle
+   - Suggested size: 500x500px minimum
+
+9. desk-organizer.jpg
+   - Description: Desk organizer for stationery
+   - Suggested size: 500x500px minimum
+
+---
+
+BACKPACKS CATEGORY (1 image required - Price: ₹399)
+====================================================
+10. college-backpack.jpg
+    - Description: College backpack with laptop compartment
+    - Suggested size: 500x500px minimum
+
+---
+
+BANNER/HERO IMAGES (Optional)
+==============================
+11. hero-banner.jpg
+    - Description: Main homepage banner image
+    - Suggested size: 1920x600px
+
+12. offer-banner.jpg
+    - Description: Special offer banner
+    - Suggested size: 1200x400px
+
+---
+
+NOTES:
+======
+- Current placeholders: https://via.placeholder.com/250x250
+- Recommended format: JPG or PNG
+- Keep file sizes optimized for web (under 200KB per image)
+- Use consistent lighting and backgrounds for professional look
+- All product images should be on white or neutral backgrounds
+
+---
+
+HOW TO USE:
+===========
+1. Create a folder named "images" in your project root
+2. Save all product photos with the names listed above
+3. Replace "attachment:0", "attachment:1", etc. with actual file paths
+4. Update HTML files to use: src="images/filename.jpg"
+
+Example replacement in HTML:
+<img src="attachment:0" alt="Women's Formal Pant">
+→
+<img src="images/womens-formal-pant.jpg" alt="Women's Formal Pant">
+
+---
+
+CURRENT STATUS:
+===============
+✓ Fashion: Using 4 images from attachments (needs to be replaced with actual files)
+✗ Stationery: Using placeholders (needs 5 actual images)
+✗ Backpacks: Using placeholder (needs 1 actual image)
+✗ Banners: Not yet implemented
+
+Total images needed: 10 product images + 2 optional banners = 12 images

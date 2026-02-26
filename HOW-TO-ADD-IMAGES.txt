@@ -1,0 +1,37 @@
+STEPS TO ADD YOUR FASHION IMAGES
+=================================
+
+I've updated your HTML files to use proper image paths. Now you need to save your 4 fashion photos.
+
+SAVE THESE 4 IMAGES TO THE "images" FOLDER:
+============================================
+
+1. The WHITE MEN'S SHIRT photo (the one with the man in white shirt)
+   → Save as: mens-formal-shirt.jpg
+
+2. The WHITE WOMEN'S SHIRT photo (the one with the woman in white shirt)
+   → Save as: womens-formal-shirt.jpg
+
+3. The NAVY BLUE MEN'S PANTS photo
+   → Save as: mens-formal-pant.jpg
+
+4. The BLACK WOMEN'S PANTS photo
+   → Save as: womens-formal-pant.jpg
+
+
+HOW TO SAVE:
+============
+1. Right-click on each image you have
+2. Choose "Save As..."
+3. Navigate to: C:\Users\Hinal\Desktop\Coding Club\Campus Cart\images\
+4. Use the exact filename listed above
+5. Save as JPG format
+
+
+AFTER SAVING:
+=============
+Your website will automatically display these images in:
+- Home page (Trending Products section)
+- Shop page (Fashion products)
+
+The HTML has already been updated to look for these files!

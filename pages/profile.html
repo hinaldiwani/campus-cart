@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - CampusCart</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">CampusCart</a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products...">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <div class="nav-icons">
+                    <a href="wishlist.html" class="icon-link">
+                        <span class="icon">❤️</span>
+                        <span class="badge">0</span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <span class="icon">🛒</span>
+                        <span class="badge">0</span>
+                    </a>
+                    <a href="profile.html" class="icon-link active">
+                        <span class="icon">👤</span>
+                    </a>
+                </div>
+            </nav>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> / <span>My Profile</span>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <section class="profile-page">
+        <div class="container">
+            <div class="profile-layout">
+                <!-- Sidebar Navigation -->
+                <aside class="profile-sidebar">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <img src="https://via.placeholder.com/100x100" alt="User Avatar">
+                        </div>
+                        <h3>John Doe</h3>
+                        <p>john.doe@college.edu</p>
+                    </div>
+
+                    <nav class="profile-nav">
+                        <a href="#dashboard" class="profile-nav-link active">
+                            <span>📊</span> Dashboard
+                        </a>
+                        <a href="#orders" class="profile-nav-link">
+                            <span>📦</span> My Orders
+                        </a>
+                        <a href="#settings" class="profile-nav-link">
+                            <span>⚙️</span> Account Settings
+                        </a>
+                        <a href="#addresses" class="profile-nav-link">
+                            <span>📍</span> Saved Addresses
+                        </a>
+                        <a href="login.html" class="profile-nav-link logout">
+                            <span>🚪</span> Logout
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="profile-main">
+                    <!-- Dashboard Tab -->
+                    <div class="profile-content active" id="dashboard">
+                        <h1>Welcome back, John!</h1>
+                        <p class="subtitle">Here's what's happening with your account</p>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">📦</div>
+                                <div class="stat-info">
+                                    <h3>12</h3>
+                                    <p>Total Orders</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">⏳</div>
+                                <div class="stat-info">
+                                    <h3>2</h3>
+                                    <p>Pending Orders</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">✅</div>
+                                <div class="stat-info">
+                                    <h3>10</h3>
+                                    <p>Completed</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">❤️</div>
+                                <div class="stat-info">
+                                    <h3>3</h3>
+                                    <p>Wishlist Items</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="recent-orders">
+                            <h2>Recent Orders</h2>
+                            <div class="orders-table">
+                                <div class="order-row header">
+                                    <div>Order ID</div>
+                                    <div>Date</div>
+                                    <div>Total</div>
+                                    <div>Status</div>
+                                    <div>Action</div>
+                                </div>
+                                <div class="order-row">
+                                    <div>#ORD-2026-001</div>
+                                    <div>Feb 20, 2026</div>
+                                    <div>₹1,722</div>
+                                    <div><span class="status-badge pending">Pending</span></div>
+                                    <div><a href="#" class="btn-link">View Details</a></div>
+                                </div>
+                                <div class="order-row">
+                                    <div>#ORD-2026-002</div>
+                                    <div>Feb 18, 2026</div>
+                                    <div>₹899</div>
+                                    <div><span class="status-badge completed">Delivered</span></div>
+                                    <div><a href="#" class="btn-link">View Details</a></div>
+                                </div>
+                                <div class="order-row">
+                                    <div>#ORD-2026-003</div>
+                                    <div>Feb 15, 2026</div>
+                                    <div>₹499</div>
+                                    <div><span class="status-badge completed">Delivered</span></div>
+                                    <div><a href="#" class="btn-link">View Details</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Tab -->
+                    <div class="profile-content" id="orders">
+                        <h1>My Orders</h1>
+                        <div class="order-filters">
+                            <button class="filter-btn active">All</button>
+                            <button class="filter-btn">Pending</button>
+                            <button class="filter-btn">Delivered</button>
+                            <button class="filter-btn">Cancelled</button>
+                        </div>
+
+                        <div class="order-list">
+                            <!-- Order Item 1 -->
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div class="order-info">
+                                        <h3>Order #ORD-2026-001</h3>
+                                        <p>Placed on February 20, 2026</p>
+                                    </div>
+                                    <span class="status-badge pending">Pending</span>
+                                </div>
+                                <div class="order-items">
+                                    <div class="order-product">
+                                        <img src="https://via.placeholder.com/80x80" alt="Product">
+                                        <div class="product-details">
+                                            <h4>College Backpack</h4>
+                                            <p>Quantity: 1</p>
+                                        </div>
+                                        <p class="product-price">₹399</p>
+                                    </div>
+                                </div>
+                                <div class="order-footer">
+                                    <p class="order-total">Total: <strong>₹1,722</strong></p>
+                                    <div class="order-actions">
+                                        <button class="btn btn-secondary btn-small">Track Order</button>
+                                        <button class="btn btn-outline btn-small">Cancel Order</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order Item 2 -->
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div class="order-info">
+                                        <h3>Order #ORD-2026-002</h3>
+                                        <p>Placed on February 18, 2026</p>
+                                    </div>
+                                    <span class="status-badge completed">Delivered</span>
+                                </div>
+                                <div class="order-items">
+                                    <div class="order-product">
+                                        <img src="https://via.placeholder.com/80x80" alt="Product">
+                                        <div class="product-details">
+                                            <h4>Organic Chemistry Textbook</h4>
+                                            <p>Quantity: 1</p>
+                                        </div>
+                                        <p class="product-price">₹899</p>
+                                    </div>
+                                </div>
+                                <div class="order-footer">
+                                    <p class="order-total">Total: <strong>₹899</strong></p>
+                                    <div class="order-actions">
+                                        <button class="btn btn-secondary btn-small">Reorder</button>
+                                        <button class="btn btn-outline btn-small">Write Review</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div class="profile-content" id="settings">
+                        <h1>Account Settings</h1>
+                        <form class="settings-form">
+                            <div class="form-section">
+                                <h2>Personal Information</h2>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" value="John">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" value="Doe">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" value="john.doe@college.edu">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" value="+1 (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label for="college">College/University</label>
+                                    <select id="college">
+                                        <option value="stanford" selected>Stanford University</option>
+                                        <option value="harvard">Harvard University</option>
+                                        <option value="mit">MIT</option>
+                                        <option value="yale">Yale University</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h2>Change Password</h2>
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmNewPassword">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Addresses Tab -->
+                    <div class="profile-content" id="addresses">
+                        <div class="section-header">
+                            <h1>Saved Addresses</h1>
+                            <button class="btn btn-primary">Add New Address</button>
+                        </div>
+
+                        <div class="address-grid">
+                            <!-- Address Card 1 -->
+                            <div class="address-card">
+                                <div class="address-header">
+                                    <h3>Home</h3>
+                                    <span class="default-badge">Default</span>
+                                </div>
+                                <p class="address-details">
+                                    John Doe<br>
+                                    123 College Avenue<br>
+                                    Stanford, CA 94305<br>
+                                    United States<br>
+                                    Phone: +1 (555) 123-4567
+                                </p>
+                                <div class="address-actions">
+                                    <button class="btn-link">Edit</button>
+                                    <button class="btn-link danger">Delete</button>
+                                </div>
+                            </div>
+
+                            <!-- Address Card 2 -->
+                            <div class="address-card">
+                                <div class="address-header">
+                                    <h3>Dorm</h3>
+                                </div>
+                                <p class="address-details">
+                                    John Doe<br>
+                                    Dorm Building A, Room 201<br>
+                                    Stanford University<br>
+                                    Stanford, CA 94305<br>
+                                    United States<br>
+                                    Phone: +1 (555) 123-4567
+                                </p>
+                                <div class="address-actions">
+                                    <button class="btn-link">Edit</button>
+                                    <button class="btn-link">Set as Default</button>
+                                    <button class="btn-link danger">Delete</button>
+                                </div>
+                            </div>
+
+                            <!-- Add New Address Card -->
+                            <div class="address-card add-new">
+                                <div class="add-icon">+</div>
+                                <p>Add New Address</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>CampusCart</h3>
+                    <p>Your one-stop shop for all campus needs.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html">Fashion</a></li>
+                        <li><a href="shop.html">Stationery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CampusCart. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

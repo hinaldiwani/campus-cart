@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - CampusCart</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">CampusCart</a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products...">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <div class="nav-icons">
+                    <a href="wishlist.html" class="icon-link">
+                        <span class="icon">❤️</span>
+                        <span class="badge">0</span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <span class="icon">🛒</span>
+                        <span class="badge">0</span>
+                    </a>
+                    <a href="profile.html" class="icon-link">
+                        <span class="icon">👤</span>
+                    </a>
+                </div>
+            </nav>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span>College
+                Backpack</span>
+        </div>
+    </div>
+
+    <!-- Product Details -->
+    <section class="product-details">
+        <div class="container">
+            <div class="product-layout">
+                <!-- Product Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="https://via.placeholder.com/500x500" alt="Product">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="https://via.placeholder.com/100x100" alt="Thumbnail" class="active">
+                        <img src="https://via.placeholder.com/100x100" alt="Thumbnail">
+                        <img src="https://via.placeholder.com/100x100" alt="Thumbnail">
+                        <img src="https://via.placeholder.com/100x100" alt="Thumbnail">
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-details-info">
+                    <h1>College Backpack - Ultimate Student Pack</h1>
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count">(156 Reviews)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current">₹399</span>
+                        <span class="original">₹699</span>
+                        <span class="discount">43% OFF</span>
+                    </div>
+                    <div class="availability">
+                        <span class="in-stock">✓ In Stock</span>
+                    </div>
+                    <p class="short-description">
+                        Premium college backpack with padded laptop compartment, multiple pockets, and ergonomic design.
+                        Perfect for carrying textbooks, laptop, and all your campus essentials.
+                    </p>
+
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label>Color:</label>
+                            <div class="color-options">
+                                <button class="color-btn active" style="background: #000;"></button>
+                                <button class="color-btn" style="background: #fff; border: 1px solid #ddd;"></button>
+                                <button class="color-btn" style="background: #4F46E5;"></button>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label>Quantity:</label>
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <input type="number" value="1" min="1">
+                                <button class="qty-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-large">Add to Cart</button>
+                        <button class="btn btn-secondary btn-large">Add to Wishlist ❤️</button>
+                    </div>
+
+                    <div class="product-meta">
+                        <p><strong>SKU:</strong> BP-COL-001</p>
+                        <p><strong>Category:</strong> Backpacks</p>
+                        <p><strong>Tags:</strong> Backpack, Student, College, Laptop Bag</p>
+                        <div class="share-buttons">
+                            <span>Share:</span>
+                            <a href="#">Facebook</a>
+                            <a href="#">Twitter</a>
+                            <a href="#">Pinterest</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="description">Description</button>
+                    <button class="tab-btn" data-tab="specifications">Specifications</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews (124)</button>
+                    <button class="tab-btn" data-tab="shipping">Shipping</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-panel active" id="description">
+                        <h3>Product Description</h3>
+                        <p>Discover the perfect backpack for your college journey with our Ultimate Student Pack.
+                            Featuring a dedicated padded laptop compartment, multiple organizational pockets, and
+                            ergonomic design, this backpack keeps all your essentials organized and protected.</p>
+                        <p>The comfortable padded shoulder straps and breathable back panel ensure a comfortable fit
+                            during long days on campus. With a durable water-resistant exterior, your belongings stay
+                            protected in all weather conditions.</p>
+                        <ul>
+                            <li>Padded laptop compartment (fits up to 15.6")</li>
+                            <li>Multiple organizational pockets</li>
+                            <li>Water-resistant material</li>
+                            <li>Ergonomic padded straps</li>
+                            <li>USB charging port for convenience</li>
+                            <li>Durable construction with 2-year warranty</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel" id="specifications">
+                        <h3>Specifications</h3>
+                        <table class="specs-table">
+                            <tr>
+                                <td>Brand</td>
+                                <td>CampusPack</td>
+                            </tr>
+                            <tr>
+                                <td>Model</td>
+                                <td>CP-BP-2000</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity</td>
+                                <td>30 Liters</td>
+                            </tr>
+                            <tr>
+                                <td>Laptop Compartment</td>
+                                <td>Up to 15.6 inches</td>
+                            </tr>
+                            <tr>
+                                <td>Charging Time</td>
+                                <td>2 hours</td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>250g</td>
+                            </tr>
+                            <tr>
+                                <td>Driver Size</td>
+                                <td>40mm</td>
+                            </tr>
+                            <tr>
+                                <td>Noise Cancellation</td>
+                                <td>Active (ANC)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="tab-panel" id="reviews">
+                        <h3>Customer Reviews</h3>
+                        <div class="review-summary">
+                            <div class="rating-overview">
+                                <h2>4.9</h2>
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <p>Based on 156 reviews</p>
+                            </div>
+                        </div>
+
+                        <div class="review-list">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <strong>Sarah Johnson</strong>
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <p class="review-date">January 15, 2026</p>
+                                <p class="review-text">Amazing backpack! So many pockets and the laptop compartment is
+                                    really well padded. Perfect for carrying all my textbooks and laptop.</p>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <strong>Mike Chen</strong>
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <p class="review-date">January 10, 2026</p>
+                                <p class="review-text">Best backpack I've owned. Very comfortable even when fully loaded
+                                    with books. The water-resistant material is a lifesaver. Highly recommend!</p>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <strong>Emily Rodriguez</strong>
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                </div>
+                                <p class="review-date">December 28, 2025</p>
+                                <p class="review-text">Very comfortable and the sound is excellent. Worth every penny!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="shipping">
+                        <h3>Shipping Information</h3>
+                        <p><strong>Free Standard Shipping</strong> on orders over ₹999</p>
+                        <p><strong>Estimated Delivery:</strong> 3-5 business days</p>
+                        <p><strong>Express Shipping:</strong> 1-2 business days (₹49)</p>
+                        <p><strong>International Shipping:</strong> Available (7-14 business days)</p>
+                        <h4>Return Policy</h4>
+                        <p>30-day money-back guarantee. Items must be returned in original condition with all packaging.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="related-products">
+                <h2>You May Also Like</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250" alt="Product">
+                            <button class="wishlist-btn">❤️</button>
+                        </div>
+                        <div class="product-info">
+                            <h3>Water Bottle</h3>
+                            <div class="rating">
+                                <span>⭐⭐⭐⭐⭐</span>
+                                <span>(312)</span>
+                            </div>
+                            <div class="price">
+                                <span class="current-price">₹249</span>
+                            </div>
+                            <button class="btn btn-primary btn-small">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250" alt="Product">
+                            <button class="wishlist-btn">❤️</button>
+                        </div>
+                        <div class="product-info">
+                            <h3>Notebook Set (5 Pack)</h3>
+                            <div class="rating">
+                                <span>⭐⭐⭐⭐⭐</span>
+                                <span>(203)</span>
+                            </div>
+                            <div class="price">
+                                <span class="current-price">₹299</span>
+                            </div>
+                            <button class="btn btn-primary btn-small">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250" alt="Product">
+                            <button class="wishlist-btn">❤️</button>
+                        </div>
+                        <div class="product-info">
+                            <h3>Pen Set</h3>
+                            <div class="rating">
+                                <span>⭐⭐⭐⭐⭐</span>
+                                <span>(145)</span>
+                            </div>
+                            <div class="price">
+                                <span class="current-price">₹199</span>
+                            </div>
+                            <button class="btn btn-primary btn-small">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/250x250" alt="Product">
+                            <button class="wishlist-btn">❤️</button>
+                        </div>
+                        <div class="product-info">
+                            <h3>Desk Organizer</h3>
+                            <div class="rating">
+                                <span>⭐⭐⭐⭐⭐</span>
+                                <span>(87)</span>
+                            </div>
+                            <div class="price">
+                                <span class="current-price">₹449</span>
+                            </div>
+                            <button class="btn btn-primary btn-small">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>CampusCart</h3>
+                    <p>Your one-stop shop for all campus needs.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html">Fashion</a></li>
+                        <li><a href="shop.html">Stationery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CampusCart. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - CampusCart</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">CampusCart</a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products...">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <div class="nav-icons">
+                    <a href="wishlist.html" class="icon-link">
+                        <span class="icon">❤️</span>
+                        <span class="badge">0</span>
+                    </a>
+                    <a href="cart.html" class="icon-link active">
+                        <span class="icon">🛒</span>
+                        <span class="badge">3</span>
+                    </a>
+                    <a href="profile.html" class="icon-link">
+                        <span class="icon">👤</span>
+                    </a>
+                </div>
+            </nav>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> / <span>Shopping Cart</span>
+        </div>
+    </div>
+
+    <!-- Cart Page -->
+    <section class="cart-page">
+        <div class="container">
+            <h1>Shopping Cart</h1>
+
+            <div class="cart-layout">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <!-- Cart Item 1 -->
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://via.placeholder.com/120x120" alt="Product">
+                        </div>
+                        <div class="item-details">
+                            <h3><a href="product-details.html">College Backpack</a></h3>
+                            <p class="item-specs">Color: Navy Blue</p>
+                            <p class="item-price">₹399</p>
+                            <button class="btn-link remove-btn">Remove</button>
+                        </div>
+                        <div class="item-quantity">
+                            <label>Quantity:</label>
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <input type="number" value="1" min="1">
+                                <button class="qty-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="item-total">
+                            <p class="total-price">₹399</p>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 3 -->
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://via.placeholder.com/120x120" alt="Product">
+                        </div>
+                        <div class="item-details">
+                            <h3><a href="product-details.html">Notebook Set (5 Pack)</a></h3>
+                            <p class="item-specs">Ruled</p>
+                            <p class="item-price">₹299</p>
+                            <button class="btn-link remove-btn">Remove</button>
+                        </div>
+                        <div class="item-quantity">
+                            <label>Quantity:</label>
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <input type="number" value="2" min="1">
+                                <button class="qty-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="item-total">
+                            <p class="total-price">₹598</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="cart-actions">
+                        <a href="shop.html" class="btn btn-secondary">Continue Shopping</a>
+                        <button class="btn btn-outline">Clear Cart</button>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-row">
+                        <span>Subtotal (4 items):</span>
+                        <span>₹1,594</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span class="free">Free</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax:</span>
+                        <span>₹128</span>
+                    </div>
+
+                    <div class="coupon-section">
+                        <input type="text" placeholder="Enter coupon code">
+                        <button class="btn btn-secondary btn-small">Apply</button>
+                    </div>
+
+                    <div class="summary-row discount">
+                        <span>Discount:</span>
+                        <span>-₹0.00</span>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span>₹1,722</span>
+                    </div>
+
+                    <button class="btn btn-primary btn-large btn-full">Proceed to Checkout</button>
+
+                    <div class="secure-checkout">
+                        <p>🔒 Secure Checkout</p>
+                    </div>
+
+                    <div class="accepted-payments">
+                        <p>We Accept:</p>
+                        <div class="payment-icons">
+                            <span>💳</span>
+                            <span>💳</span>
+                            <span>💳</span>
+                            <span>💳</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- You May Also Like -->
+    <section class="recommended-products">
+        <div class="container">
+            <h2>You May Also Like</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x250" alt="Product">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Water Bottle</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(312)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹249</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x250" alt="Product">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Highlighter Set</h3>
+                        <div class="rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span>(234)</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹199</span>
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>CampusCart</h3>
+                    <p>Your one-stop shop for all campus needs.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html">Fashion</a></li>
+                        <li><a href="shop.html">Stationery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CampusCart. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
