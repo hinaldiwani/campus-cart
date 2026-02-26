@@ -1,205 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - CampusCart</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/components.css">
+    <title>Create Account - CampusCart</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/components.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+    .auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#F9FAFB;padding:2rem}
+    .auth-card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.08);padding:2.5rem;width:100%;max-width:460px}
+    .auth-logo{text-align:center;font-size:1.75rem;font-weight:700;color:#4F46E5;margin-bottom:.5rem}
+    .auth-subtitle{text-align:center;color:#6B7280;margin-bottom:2rem}
+    .form-group{margin-bottom:1.25rem}
+    .form-group label{display:block;font-weight:600;margin-bottom:.4rem;color:#374151}
+    .form-input{width:100%;padding:.75rem 1rem;border:1.5px solid #E5E7EB;border-radius:8px;font-size:1rem;outline:none;transition:border .2s}
+    .form-input:focus{border-color:#4F46E5;box-shadow:0 0 0 3px #4F46E520}
+    .auth-btn{width:100%;padding:.875rem;font-size:1rem;font-weight:600;margin-top:.5rem}
+    .auth-links{text-align:center;margin-top:1.25rem;color:#6B7280}
+    .auth-links a{color:#4F46E5;font-weight:600}
+    .error-msg{background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:8px;padding:.75rem;margin-bottom:1rem;display:none}
+    .success-msg{background:#F0FDF4;color:#16A34A;border:1px solid #86EFAC;border-radius:8px;padding:.75rem;margin-bottom:1rem;display:none}
+    </style>
 </head>
-
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">
-                    <a href="index.html">CampusCart</a>
+    <div class="auth-page">
+        <div class="auth-card">
+            <div class="auth-logo"><a href="/" style="text-decoration:none;color:inherit">&#127890; CampusCart</a></div>
+            <p class="auth-subtitle">Create your account and start shopping</p>
+            <div class="error-msg"   id="errorMsg"></div>
+            <div class="success-msg" id="successMsg"></div>
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-input" placeholder="John Doe" required>
                 </div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search for products...">
-                    <button class="search-btn">🔍</button>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input" placeholder="you@example.com" required autocomplete="email">
                 </div>
-                <div class="nav-icons">
-                    <a href="wishlist.html" class="icon-link">
-                        <span class="icon">❤️</span>
-                        <span class="badge">0</span>
-                    </a>
-                    <a href="cart.html" class="icon-link">
-                        <span class="icon">🛒</span>
-                        <span class="badge">0</span>
-                    </a>
-                    <a href="profile.html" class="icon-link">
-                        <span class="icon">👤</span>
-                    </a>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="At least 6 characters" required minlength="6" autocomplete="new-password">
                 </div>
-            </nav>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Register Page -->
-    <section class="auth-page">
-        <div class="container">
-            <div class="auth-container">
-                <div class="auth-form">
-                    <h1>Create Account</h1>
-                    <p class="auth-subtitle">Join CampusCart today</p>
-
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" id="firstName" placeholder="John" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" id="lastName" placeholder="Doe" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="your.email@college.edu" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="college">College/University</label>
-                            <select id="college" required>
-                                <option value="">Select your college</option>
-                                <option value="harvard">Harvard University</option>
-                                <option value="mit">MIT</option>
-                                <option value="stanford">Stanford University</option>
-                                <option value="yale">Yale University</option>
-                                <option value="princeton">Princeton University</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number (Optional)</label>
-                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" placeholder="Create a strong password" required>
-                            <div class="password-strength">
-                                <div class="strength-bar"></div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" id="confirmPassword" placeholder="Re-enter your password" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" required>
-                                <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy
-                                        Policy</a></span>
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox">
-                                <span>Subscribe to newsletter for exclusive deals</span>
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-large btn-full">Create Account</button>
-                    </form>
-
-                    <div class="divider">
-                        <span>OR</span>
-                    </div>
-
-                    <div class="social-login">
-                        <button class="btn btn-social">
-                            <span>🔵</span> Sign up with Google
-                        </button>
-                        <button class="btn btn-social">
-                            <span>📘</span> Sign up with Facebook
-                        </button>
-                    </div>
-
-                    <p class="auth-footer">
-                        Already have an account? <a href="login.html">Sign In</a>
-                    </p>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-input" placeholder="Repeat your password" required autocomplete="new-password">
                 </div>
-
-                <div class="auth-illustration">
-                    <div class="illustration-content">
-                        <h2>Join 10,000+<br>Students</h2>
-                        <p>Start shopping smarter today</p>
-                        <ul class="benefits-list">
-                            <li>✓ Exclusive student discounts</li>
-                            <li>✓ Personalized recommendations</li>
-                            <li>✓ Track your orders</li>
-                            <li>✓ Save your favorites</li>
-                        </ul>
-                    </div>
-                </div>
+                <button type="submit" class="btn btn-primary auth-btn" id="submitBtn">Create Account</button>
+            </form>
+            <div class="auth-links">
+                <p>Already have an account? <a href="/login">Sign in</a></p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>CampusCart</h3>
-                    <p>Your one-stop shop for all campus needs.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Shop</h4>
-                    <ul>
-                        <li><a href="shop.html">All Products</a></li>
-                        <li><a href="shop.html">Fashion</a></li>
-                        <li><a href="shop.html">Stationery</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>About</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 CampusCart. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">Instagram</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <script src="/js/app.js"></script>
+    <script>
+    if (isLoggedIn()) window.location.href = '/profile';
+
+    async function handleRegister(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const err = document.getElementById('errorMsg');
+        const suc = document.getElementById('successMsg');
+        err.style.display = 'none'; suc.style.display = 'none';
+        btn.disabled = true; btn.textContent = 'Creating account...';
+
+        const name     = document.getElementById('name').value.trim();
+        const email    = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirm  = document.getElementById('confirmPassword').value;
+
+        if (password !== confirm) {
+            err.textContent = 'Passwords do not match.'; err.style.display = 'block';
+            btn.disabled = false; btn.textContent = 'Create Account'; return;
+        }
+
+        const data = await fetch('/api/v1/auth/register', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ name, email, password })
+        }).then(function(r){ return r.json(); }).catch(function(){ return {}; });
+
+        if (data.token) {
+            setAuth(data.token, data.user || { name: name, email: email });
+            suc.textContent = 'Account created! Redirecting...'; suc.style.display = 'block';
+            setTimeout(function(){ window.location.href = '/'; }, 1000);
+        } else {
+            err.textContent = data.message || 'Registration failed. Please try again.';
+            err.style.display = 'block';
+            btn.disabled = false; btn.textContent = 'Create Account';
+        }
+    }
+    </script>
 </body>
-
 </html>

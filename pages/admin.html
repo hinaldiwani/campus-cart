@@ -1,0 +1,3218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - CampusCart</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== ADMIN LAYOUT ===== */
+      body {
+        background: #f3f4f6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Admin Top Bar */
+      .admin-topbar {
+        background: #1f2937;
+        color: white;
+        padding: 0.85rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      }
+
+      .admin-topbar .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .admin-topbar .brand span.logo-tag {
+        background: #4f46e5;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .admin-topbar .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .admin-topbar .topbar-right a {
+        color: #d1d5db;
+        font-size: 0.875rem;
+        transition: color 0.2s;
+      }
+
+      .admin-topbar .topbar-right a:hover {
+        color: white;
+      }
+
+      .admin-topbar .admin-avatar {
+        width: 36px;
+        height: 36px;
+        background: #4f46e5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      /* Admin Body */
+      .admin-body {
+        display: flex;
+        flex: 1;
+      }
+
+      /* Sidebar */
+      .admin-sidebar {
+        width: 240px;
+        background: #111827;
+        color: #d1d5db;
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 54px);
+        position: sticky;
+        top: 54px;
+        height: calc(100vh - 54px);
+        overflow-y: auto;
+      }
+
+      .sidebar-section {
+        padding: 1.25rem 0 0.5rem;
+      }
+
+      .sidebar-section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: #6b7280;
+        padding: 0 1.25rem 0.5rem;
+      }
+
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.65rem 1.25rem;
+        color: #d1d5db;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+        cursor: pointer;
+      }
+
+      .sidebar-link:hover {
+        background: #1f2937;
+        color: white;
+        border-left-color: #6b7280;
+      }
+
+      .sidebar-link.active {
+        background: #1f2937;
+        color: white;
+        border-left-color: #4f46e5;
+      }
+
+      .sidebar-link .nav-icon {
+        font-size: 1rem;
+        width: 20px;
+        text-align: center;
+      }
+
+      .sidebar-link .badge-count {
+        margin-left: auto;
+        background: #4f46e5;
+        color: white;
+        font-size: 0.7rem;
+        padding: 1px 7px;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      /* Main Content */
+      .admin-main {
+        flex: 1;
+        padding: 2rem;
+        overflow-y: auto;
+      }
+
+      /* Page Header */
+      .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.75rem;
+      }
+
+      .page-header h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+      }
+      .page-header p {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 2px;
+      }
+
+      .breadcrumb-admin {
+        font-size: 0.8rem;
+        color: #9ca3af;
+        margin-bottom: 0.5rem;
+      }
+      .breadcrumb-admin span {
+        color: #4f46e5;
+      }
+
+      /* Stats Cards */
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-left: 4px solid transparent;
+      }
+
+      .stat-card.blue {
+        border-left-color: #4f46e5;
+      }
+      .stat-card.green {
+        border-left-color: #10b981;
+      }
+      .stat-card.yellow {
+        border-left-color: #f59e0b;
+      }
+      .stat-card.red {
+        border-left-color: #ef4444;
+      }
+
+      .stat-icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+      }
+
+      .stat-card.blue .stat-icon-box {
+        background: #eef2ff;
+      }
+      .stat-card.green .stat-icon-box {
+        background: #ecfdf5;
+      }
+      .stat-card.yellow.stat-icon-box {
+        background: #fffbeb;
+      }
+      .stat-card.red .stat-icon-box {
+        background: #fef2f2;
+      }
+      .stat-card.yellow .stat-icon-box {
+        background: #fffbeb;
+      }
+
+      .stat-info h3 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #1f2937;
+        line-height: 1.2;
+      }
+      .stat-info p {
+        font-size: 0.8rem;
+        color: #6b7280;
+      }
+      .stat-info .stat-change {
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+      .stat-change.up {
+        color: #10b981;
+      }
+      .stat-change.down {
+        color: #ef4444;
+      }
+
+      /* Cards */
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+        margin-bottom: 1.75rem;
+      }
+
+      .card-header {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #f3f4f6;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .card-header h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1f2937;
+      }
+      .card-header p {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-top: 2px;
+      }
+      .card-body {
+        padding: 1.5rem;
+      }
+
+      /* Form */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+      .form-grid .full-width {
+        grid-column: 1 / -1;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.4rem;
+      }
+
+      .form-group label .required {
+        color: #ef4444;
+        margin-left: 3px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.65rem 0.875rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        color: #1f2937;
+        background: white;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .form-group .input-hint {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin-top: 0.3rem;
+      }
+
+      /* Price row */
+      .price-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .discount-display {
+        padding: 0.65rem 0.875rem;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #9ca3af;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Image Upload */
+      .image-upload-area {
+        border: 2px dashed #d1d5db;
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        background: #fafafa;
+      }
+
+      .image-upload-area:hover,
+      .image-upload-area.drag-over {
+        border-color: #4f46e5;
+        background: #eef2ff;
+      }
+
+      .image-upload-area input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+
+      .upload-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .upload-text {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #374151;
+      }
+      .upload-subtext {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin-top: 0.25rem;
+      }
+
+      .image-preview-grid {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .preview-item {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 2px solid #e5e7eb;
+      }
+
+      .preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .preview-item .remove-img {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        background: rgba(239, 68, 68, 0.9);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Toggle */
+      .toggle-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .toggle-switch {
+        position: relative;
+        width: 44px;
+        height: 24px;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        inset: 0;
+        background: #d1d5db;
+        border-radius: 24px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .toggle-slider::before {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        left: 3px;
+        top: 3px;
+        background: white;
+        border-radius: 50%;
+        transition: transform 0.2s;
+      }
+
+      .toggle-switch input:checked + .toggle-slider {
+        background: #4f46e5;
+      }
+      .toggle-switch input:checked + .toggle-slider::before {
+        transform: translateX(20px);
+      }
+      .toggle-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #374151;
+      }
+
+      /* Form Actions */
+      .form-actions {
+        display: flex;
+        gap: 0.875rem;
+        justify-content: flex-end;
+        padding-top: 1.25rem;
+        border-top: 1px solid #f3f4f6;
+        margin-top: 0.5rem;
+      }
+
+      /* Buttons */
+      .btn-admin-primary {
+        background: #4f46e5;
+        color: white;
+        padding: 0.7rem 1.75rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-admin-primary:hover {
+        background: #4338ca;
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .btn-admin-secondary {
+        background: white;
+        color: #374151;
+        padding: 0.7rem 1.5rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-admin-secondary:hover {
+        background: #f9fafb;
+        border-color: #d1d5db;
+      }
+
+      .btn-admin-danger {
+        background: white;
+        color: #ef4444;
+        padding: 0.7rem 1.5rem;
+        border: 1px solid #fca5a5;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-admin-danger:hover {
+        background: #fef2f2;
+      }
+
+      /* Table */
+      .table-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .table-toolbar .search-input {
+        padding: 0.55rem 0.875rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        outline: none;
+        width: 240px;
+        transition: border-color 0.2s;
+      }
+
+      .table-toolbar .search-input:focus {
+        border-color: #4f46e5;
+      }
+
+      .table-toolbar select {
+        padding: 0.55rem 0.875rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        outline: none;
+        background: white;
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .data-table thead {
+        background: #f9fafb;
+      }
+
+      .data-table thead th {
+        text-align: left;
+        padding: 0.75rem 1rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #6b7280;
+        border-bottom: 1px solid #e5e7eb;
+        white-space: nowrap;
+      }
+
+      .data-table tbody tr {
+        border-bottom: 1px solid #f3f4f6;
+        transition: background 0.15s;
+      }
+
+      .data-table tbody tr:hover {
+        background: #fafafa;
+      }
+
+      .data-table tbody td {
+        padding: 0.875rem 1rem;
+        font-size: 0.875rem;
+        color: #374151;
+        vertical-align: middle;
+      }
+
+      .product-cell {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .product-thumb {
+        width: 46px;
+        height: 46px;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        flex-shrink: 0;
+        background: #f3f4f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        overflow: hidden;
+      }
+
+      .product-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .product-name {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .product-sku {
+        font-size: 0.75rem;
+        color: #9ca3af;
+      }
+
+      /* Badges */
+      .badge-category {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .badge-category.fashion {
+        background: #ede9fe;
+        color: #7c3aed;
+      }
+      .badge-category.stationery {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .badge-category.backpacks {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+
+      .badge-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .badge-status::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+      }
+      .badge-status.instock {
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .badge-status.instock::before {
+        background: #10b981;
+      }
+      .badge-status.outofstock {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .badge-status.outofstock::before {
+        background: #ef4444;
+      }
+      .badge-status.lowstock {
+        background: #fffbeb;
+        color: #92400e;
+      }
+      .badge-status.lowstock::before {
+        background: #f59e0b;
+      }
+
+      .price-col {
+        font-weight: 700;
+        color: #1f2937;
+      }
+      .price-original-col {
+        text-decoration: line-through;
+        color: #9ca3af;
+        font-size: 0.8rem;
+      }
+      .price-discount-col {
+        color: #10b981;
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 0.4rem;
+      }
+
+      .action-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        border: 1px solid #e5e7eb;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        transition: all 0.15s;
+      }
+
+      .action-btn:hover {
+        transform: scale(1.1);
+      }
+      .action-btn.edit:hover {
+        background: #eef2ff;
+        border-color: #c7d2fe;
+      }
+      .action-btn.delete:hover {
+        background: #fef2f2;
+        border-color: #fca5a5;
+      }
+      .action-btn.view:hover {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+      }
+
+      /* Table Footer */
+      .table-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #f3f4f6;
+        font-size: 0.85rem;
+        color: #6b7280;
+      }
+
+      .pagination-btns {
+        display: flex;
+        gap: 0.4rem;
+      }
+
+      .page-btn-admin {
+        min-width: 34px;
+        height: 34px;
+        border-radius: 6px;
+        border: 1px solid #e5e7eb;
+        background: white;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #374151;
+        transition: all 0.15s;
+        padding: 0 0.5rem;
+      }
+
+      .page-btn-admin:hover {
+        background: #f9fafb;
+      }
+      .page-btn-admin.active {
+        background: #4f46e5;
+        color: white;
+        border-color: #4f46e5;
+      }
+
+      /* Card Tabs */
+      .card-tabs {
+        display: flex;
+        border-bottom: 2px solid #f3f4f6;
+        padding: 0 1.5rem;
+      }
+
+      .card-tab {
+        padding: 0.85rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #6b7280;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -2px;
+        transition: all 0.2s;
+      }
+
+      .card-tab:hover {
+        color: #4f46e5;
+      }
+      .card-tab.active {
+        color: #4f46e5;
+        border-bottom-color: #4f46e5;
+      }
+
+      /* Tag Input */
+      .tag-input-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        padding: 0.4rem 0.6rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        min-height: 44px;
+        align-items: center;
+        cursor: text;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .tag-input-wrapper:focus-within {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      }
+
+      .tag {
+        background: #eef2ff;
+        color: #4f46e5;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .tag button {
+        background: none;
+        border: none;
+        color: #818cf8;
+        cursor: pointer;
+        font-size: 0.8rem;
+        line-height: 1;
+        padding: 0;
+      }
+      .tag-input {
+        border: none;
+        outline: none;
+        font-size: 0.875rem;
+        flex: 1;
+        min-width: 80px;
+        padding: 2px;
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: #1f2937;
+        color: white;
+        padding: 0.875rem 1.25rem;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 9999;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .toast.success {
+        border-left: 4px solid #10b981;
+      }
+      .toast.error {
+        border-left: 4px solid #ef4444;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .stats-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .price-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .admin-sidebar {
+          display: none;
+        }
+        .admin-main {
+          padding: 1rem;
+        }
+        .stats-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .stats-row {
+          grid-template-columns: 1fr;
+        }
+        .price-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ===== LOGIN GATE ===== */
+      .login-gate {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+      }
+
+      .login-gate.hidden {
+        display: none;
+      }
+
+      .login-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .login-card .lc-logo {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .login-card h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.25rem;
+      }
+      .login-card .lc-sub {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-bottom: 1.75rem;
+      }
+
+      .login-card .form-group {
+        text-align: left;
+        margin-bottom: 1rem;
+      }
+      .login-card label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.35rem;
+      }
+      .login-card input {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .login-card input:focus {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+      }
+
+      .login-error {
+        color: #ef4444;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        display: none;
+      }
+      .login-hint {
+        margin-top: 1.25rem;
+        font-size: 0.78rem;
+        color: #9ca3af;
+      }
+
+      /* ===== EXPORT CARD ===== */
+      .export-output {
+        width: 100%;
+        height: 260px;
+        font-family: monospace;
+        font-size: 0.8rem;
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        resize: vertical;
+        outline: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===== LOGIN GATE ===== -->
+    <div class="login-gate" id="loginGate">
+      <div class="login-card">
+        <div class="lc-logo">🛒</div>
+        <h2>Admin Login</h2>
+        <p class="lc-sub">Sign in to access the CampusCart admin panel</p>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="lgUser">Email</label>
+            <input
+              type="email"
+              id="lgUser"
+              placeholder="admin@campuscart.com"
+              autocomplete="username"
+            />
+          </div>
+          <div class="form-group">
+            <label for="lgPass">Password</label>
+            <input
+              type="password"
+              id="lgPass"
+              placeholder="Enter password"
+              autocomplete="current-password"
+            />
+          </div>
+          <p class="login-error" id="loginErr">❌ Invalid credentials.</p>
+          <br />
+          <button
+            type="submit"
+            class="btn-admin-primary"
+            style="width: 100%; justify-content: center"
+          >
+            🔐 Sign In
+          </button>
+        </form>
+        <p class="login-hint">Use your admin email &amp; password</p>
+      </div>
+    </div>
+
+    <!-- Admin Top Bar -->
+    <header class="admin-topbar">
+      <div class="brand">
+        <span>🛒 CampusCart</span>
+        <span class="logo-tag">Admin</span>
+      </div>
+      <div class="topbar-right">
+        <a href="/" target="_blank">🌐 View Store</a>
+        <a href="#">🔔</a>
+        <a href="#">⚙️</a>
+        <div class="admin-avatar" title="Admin">A</div>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Main</div>
+          <a
+            class="sidebar-link"
+            onclick="showSection('dashboard')"
+            id="nav-dashboard"
+          >
+            <span class="nav-icon">📊</span> Dashboard
+          </a>
+          <a
+            class="sidebar-link active"
+            onclick="showSection('products')"
+            id="nav-products"
+          >
+            <span class="nav-icon">📦</span> Products
+            <span class="badge-count" id="products-count">9</span>
+          </a>
+          <a
+            class="sidebar-link"
+            onclick="showSection('orders')"
+            id="nav-orders"
+          >
+            <span class="nav-icon">🧾</span> Orders
+            <span class="badge-count">3</span>
+          </a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Store</div>
+          <a
+            class="sidebar-link"
+            onclick="showSection('categories')"
+            id="nav-categories"
+          >
+            <span class="nav-icon">🏷️</span> Categories
+          </a>
+          <a
+            class="sidebar-link"
+            onclick="showSection('customers')"
+            id="nav-customers"
+          >
+            <span class="nav-icon">👥</span> Customers
+          </a>
+          <a
+            class="sidebar-link"
+            onclick="showSection('coupons')"
+            id="nav-coupons"
+          >
+            <span class="nav-icon">🎟️</span> Coupons
+          </a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">System</div>
+          <a
+            class="sidebar-link"
+            onclick="showSection('settings')"
+            id="nav-settings"
+          >
+            <span class="nav-icon">⚙️</span> Settings
+          </a>
+          <a class="sidebar-link" href="/login">
+            <span class="nav-icon">🚪</span> Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="admin-main">
+        <!-- ===== DASHBOARD ===== -->
+        <div id="section-dashboard" style="display: none">
+          <div class="breadcrumb-admin">Admin / <span>Dashboard</span></div>
+          <div class="page-header">
+            <div>
+              <h1>Dashboard</h1>
+              <p>Welcome back! Here's what's happening today.</p>
+            </div>
+          </div>
+          <div class="stats-row">
+            <div class="stat-card blue">
+              <div class="stat-icon-box">📦</div>
+              <div class="stat-info">
+                <h3>9</h3>
+                <p>Total Products</p>
+                <span class="stat-change up">↑ 2 this week</span>
+              </div>
+            </div>
+            <div class="stat-card green">
+              <div class="stat-icon-box">🧾</div>
+              <div class="stat-info">
+                <h3>3</h3>
+                <p>Total Orders</p>
+                <span class="stat-change up">↑ 1 today</span>
+              </div>
+            </div>
+            <div class="stat-card yellow">
+              <div class="stat-icon-box">💰</div>
+              <div class="stat-info">
+                <h3>₹3,120</h3>
+                <p>Revenue</p>
+                <span class="stat-change up">↑ 12% this month</span>
+              </div>
+            </div>
+            <div class="stat-card red">
+              <div class="stat-icon-box">👥</div>
+              <div class="stat-info">
+                <h3>10,000+</h3>
+                <p>Customers</p>
+                <span class="stat-change up">↑ 5 new today</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2>Recent Orders</h2>
+                <p>Latest 3 orders placed</p>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Products</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#ORD-2026-001</strong></td>
+                    <td>John Doe</td>
+                    <td>College Backpack × 1</td>
+                    <td class="price-col">₹1,722</td>
+                    <td>Feb 20, 2026</td>
+                    <td><span class="badge-status lowstock">Pending</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ORD-2026-002</strong></td>
+                    <td>John Doe</td>
+                    <td>Notebook Set × 1</td>
+                    <td class="price-col">₹899</td>
+                    <td>Feb 18, 2026</td>
+                    <td><span class="badge-status instock">Delivered</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ORD-2026-003</strong></td>
+                    <td>John Doe</td>
+                    <td>Highlighter Set × 2</td>
+                    <td class="price-col">₹499</td>
+                    <td>Feb 15, 2026</td>
+                    <td><span class="badge-status instock">Delivered</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PRODUCTS ===== -->
+        <div id="section-products">
+          <div class="breadcrumb-admin">Admin / <span>Products</span></div>
+          <div class="page-header">
+            <div>
+              <h1>Product Management</h1>
+              <p>Add, edit, and manage your store's product catalog</p>
+            </div>
+            <button class="btn-admin-primary" onclick="switchProductTab('add')">
+              ＋ Add New Product
+            </button>
+          </div>
+
+          <div class="card">
+            <div class="card-tabs">
+              <div
+                class="card-tab active"
+                id="tab-add"
+                onclick="switchProductTab('add')"
+              >
+                Add Product
+              </div>
+              <div
+                class="card-tab"
+                id="tab-manage"
+                onclick="switchProductTab('manage')"
+              >
+                Manage Products (9)
+              </div>
+            </div>
+
+            <!-- ADD PRODUCT PANEL -->
+            <div id="product-add-panel">
+              <div class="card-header">
+                <div>
+                  <h2>Add New Product</h2>
+                  <p>
+                    Fill in the details below to list a new item in the store
+                  </p>
+                </div>
+              </div>
+              <div class="card-body">
+                <form id="addProductForm" onsubmit="handleAddProduct(event)">
+                  <!-- Basic Info -->
+                  <div class="form-grid" style="margin-bottom: 1.25rem">
+                    <div class="form-group full-width">
+                      <label
+                        >Product Name <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        id="productName"
+                        placeholder="e.g. College Backpack – Ultimate Student Pack"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Category <span class="required">*</span></label>
+                      <select id="productCategory" required>
+                        <option value="">Select category</option>
+                        <option value="fashion">👕 Fashion</option>
+                        <option value="stationery">✏️ Stationery</option>
+                        <option value="backpacks">🎒 Backpacks</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>SKU / Product Code</label>
+                      <input
+                        type="text"
+                        id="productSku"
+                        placeholder="e.g. BP-COL-001"
+                      />
+                      <span class="input-hint"
+                        >Leave blank to auto-generate</span
+                      >
+                    </div>
+                    <div class="form-group full-width">
+                      <label
+                        >Short Description
+                        <span class="required">*</span></label
+                      >
+                      <textarea
+                        id="productDesc"
+                        placeholder="Describe the product in 1–2 sentences. Appears below the product title on the listing."
+                        required
+                      ></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                      <label>Full Description</label>
+                      <textarea
+                        id="productFullDesc"
+                        style="min-height: 130px"
+                        placeholder="Detailed description — features, materials, usage, etc."
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Pricing -->
+                  <div style="margin-bottom: 1.25rem">
+                    <label
+                      style="
+                        display: block;
+                        font-size: 0.85rem;
+                        font-weight: 700;
+                        color: #374151;
+                        margin-bottom: 0.6rem;
+                      "
+                    >
+                      Pricing <span style="color: #ef4444">*</span>
+                    </label>
+                    <div class="price-row">
+                      <div class="form-group">
+                        <label>Selling Price (₹)</label>
+                        <input
+                          type="number"
+                          id="productPrice"
+                          placeholder="399"
+                          min="0"
+                          step="1"
+                          oninput="calcDiscount()"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Original / MRP (₹)</label>
+                        <input
+                          type="number"
+                          id="productMrp"
+                          placeholder="699"
+                          min="0"
+                          step="1"
+                          oninput="calcDiscount()"
+                        />
+                        <span class="input-hint"
+                          >Optional – shows strikethrough price</span
+                        >
+                      </div>
+                      <div class="form-group">
+                        <label>Discount</label>
+                        <div class="discount-display" id="discountDisplay">
+                          —
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Stock & Options -->
+                  <div class="form-grid" style="margin-bottom: 1.25rem">
+                    <div class="form-group">
+                      <label
+                        >Stock Quantity <span class="required">*</span></label
+                      >
+                      <input
+                        type="number"
+                        id="productStock"
+                        placeholder="50"
+                        min="0"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label
+                        >Badge Label
+                        <span style="color: #9ca3af; font-weight: 400"
+                          >(optional)</span
+                        ></label
+                      >
+                      <input
+                        type="text"
+                        id="productBadge"
+                        placeholder='e.g. "New" or "Hot" or "Sale"'
+                      />
+                      <span class="input-hint"
+                        >Auto-calculates from price if blank</span
+                      >
+                    </div>
+                    <div
+                      class="form-group"
+                      style="
+                        display: flex;
+                        align-items: flex-end;
+                        gap: 1.5rem;
+                        padding-bottom: 0.25rem;
+                      "
+                    >
+                      <div>
+                        <label style="margin-bottom: 0.6rem">Status</label>
+                        <div class="toggle-group">
+                          <label class="toggle-switch">
+                            <input type="checkbox" id="productStatus" checked />
+                            <span class="toggle-slider"></span>
+                          </label>
+                          <span class="toggle-label" id="statusLabel"
+                            >In Stock</span
+                          >
+                        </div>
+                      </div>
+                      <div>
+                        <label style="margin-bottom: 0.6rem">Featured</label>
+                        <div class="toggle-group">
+                          <label class="toggle-switch">
+                            <input type="checkbox" id="productFeatured" />
+                            <span class="toggle-slider"></span>
+                          </label>
+                          <span class="toggle-label">Show on Homepage</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Tags</label>
+                      <div
+                        class="tag-input-wrapper"
+                        onclick="document.getElementById('tagInput').focus()"
+                      >
+                        <span class="tag"
+                          >Student
+                          <button type="button" onclick="removeTag(this)">
+                            ✕
+                          </button></span
+                        >
+                        <span class="tag"
+                          >Campus
+                          <button type="button" onclick="removeTag(this)">
+                            ✕
+                          </button></span
+                        >
+                        <input
+                          type="text"
+                          id="tagInput"
+                          class="tag-input"
+                          placeholder="Add tag, press Enter"
+                          onkeydown="addTag(event)"
+                        />
+                      </div>
+                      <span class="input-hint"
+                        >Press Enter to add each tag</span
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Image Upload -->
+                  <div class="form-group" style="margin-bottom: 1.25rem">
+                    <label
+                      >Product Images <span class="required">*</span></label
+                    >
+                    <div
+                      class="image-upload-area"
+                      id="uploadArea"
+                      ondragover="
+                        event.preventDefault();
+                        this.classList.add('drag-over');
+                      "
+                      ondragleave="this.classList.remove('drag-over')"
+                      ondrop="handleDrop(event)"
+                    >
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        id="imageInput"
+                        onchange="previewImages(event)"
+                      />
+                      <div class="upload-icon">🖼️</div>
+                      <div class="upload-text">
+                        Click to upload or drag &amp; drop
+                      </div>
+                      <div class="upload-subtext">
+                        PNG, JPG, WEBP — max 5 MB each · Up to 4 images
+                      </div>
+                    </div>
+                    <div class="image-preview-grid" id="imagePreview"></div>
+                    <span class="input-hint"
+                      >First image will be used as the main product
+                      thumbnail</span
+                    >
+                  </div>
+
+                  <!-- Image Filename (for shop HTML) -->
+                  <div class="form-grid" style="margin-bottom: 1.25rem">
+                    <div class="form-group">
+                      <label
+                        >Image Filename <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        id="productImageFile"
+                        placeholder="e.g. Bag.jpg"
+                        oninput="liveThumbPreview()"
+                        required
+                      />
+                      <span class="input-hint"
+                        >Filename of the image inside the
+                        <code>/images/</code> folder — used in shop page
+                        HTML</span
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label>Rating (stars)</label>
+                      <select id="productRating">
+                        <option value="5">⭐⭐⭐⭐⭐ — 5 Stars</option>
+                        <option value="4">⭐⭐⭐⭐ — 4 Stars</option>
+                        <option value="3">⭐⭐⭐ — 3 Stars</option>
+                        <option value="2">⭐⭐ — 2 Stars</option>
+                        <option value="1">⭐ — 1 Star</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Number of Reviews</label>
+                      <input
+                        type="number"
+                        id="productReviews"
+                        placeholder="156"
+                        min="0"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Thumbnail Preview</label>
+                      <div
+                        id="liveThumb"
+                        style="
+                          width: 80px;
+                          height: 80px;
+                          border-radius: 8px;
+                          border: 1px solid #e5e7eb;
+                          overflow: hidden;
+                          background: #f3f4f6;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          font-size: 1.5rem;
+                        "
+                      >
+                        🖼️
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Specifications (collapsible) -->
+                  <div style="margin-bottom: 1.25rem">
+                    <details>
+                      <summary
+                        style="
+                          cursor: pointer;
+                          font-size: 0.875rem;
+                          font-weight: 700;
+                          color: #374151;
+                          padding: 0.5rem 0;
+                          user-select: none;
+                        "
+                      >
+                        ▸ Product Specifications (optional)
+                      </summary>
+                      <div style="margin-top: 1rem">
+                        <div id="specsContainer">
+                          <div
+                            class="spec-row"
+                            style="
+                              display: grid;
+                              grid-template-columns: 1fr 1fr auto;
+                              gap: 0.75rem;
+                              margin-bottom: 0.75rem;
+                            "
+                          >
+                            <input
+                              type="text"
+                              placeholder='Spec name (e.g. "Material")'
+                              style="
+                                padding: 0.6rem 0.875rem;
+                                border: 1px solid #e5e7eb;
+                                border-radius: 8px;
+                                font-size: 0.875rem;
+                                outline: none;
+                              "
+                            />
+                            <input
+                              type="text"
+                              placeholder='Value (e.g. "Nylon")'
+                              style="
+                                padding: 0.6rem 0.875rem;
+                                border: 1px solid #e5e7eb;
+                                border-radius: 8px;
+                                font-size: 0.875rem;
+                                outline: none;
+                              "
+                            />
+                            <button
+                              type="button"
+                              onclick="this.closest('.spec-row').remove()"
+                              style="
+                                width: 36px;
+                                height: 36px;
+                                border: 1px solid #fca5a5;
+                                background: white;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                color: #ef4444;
+                                font-size: 1rem;
+                                align-self: end;
+                              "
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          class="btn-admin-secondary"
+                          style="font-size: 0.8rem; padding: 0.45rem 1rem"
+                          onclick="addSpecRow()"
+                        >
+                          + Add Row
+                        </button>
+                      </div>
+                    </details>
+                  </div>
+
+                  <!-- Actions -->
+                  <div class="form-actions">
+                    <button
+                      type="button"
+                      class="btn-admin-secondary"
+                      onclick="resetForm()"
+                    >
+                      Reset Form
+                    </button>
+                    <button
+                      type="button"
+                      class="btn-admin-secondary"
+                      onclick="saveDraft()"
+                    >
+                      💾 Save Draft
+                    </button>
+                    <button type="submit" class="btn-admin-primary">
+                      ✅ Add Product to Store
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- MANAGE PRODUCTS PANEL -->
+            <div id="product-manage-panel" style="display: none">
+              <div class="card-header">
+                <div>
+                  <h2>All Products</h2>
+                  <p id="manage-subtitle">9 products in the store</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-toolbar">
+                  <input
+                    type="text"
+                    class="search-input"
+                    placeholder="🔍  Search products..."
+                    oninput="filterTable(this.value)"
+                  />
+                  <div
+                    style="
+                      display: flex;
+                      gap: 0.75rem;
+                      align-items: center;
+                      flex-wrap: wrap;
+                    "
+                  >
+                    <select onchange="filterCategory(this.value)">
+                      <option value="">All Categories</option>
+                      <option value="fashion">Fashion</option>
+                      <option value="stationery">Stationery</option>
+                      <option value="backpacks">Backpacks</option>
+                    </select>
+                    <select>
+                      <option>All Status</option>
+                      <option>In Stock</option>
+                      <option>Low Stock</option>
+                      <option>Out of Stock</option>
+                    </select>
+                    <button
+                      class="btn-admin-danger"
+                      style="font-size: 0.8rem; padding: 0.45rem 0.875rem"
+                      onclick="bulkDelete()"
+                    >
+                      🗑 Delete Selected
+                    </button>
+                    <button
+                      class="btn-admin-secondary"
+                      style="font-size: 0.8rem; padding: 0.45rem 0.875rem"
+                      onclick="toggleExportPanel()"
+                    >
+                      📋 Export HTML
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <table class="data-table" id="productsTable">
+                <thead>
+                  <tr>
+                    <th style="width: 40px">
+                      <input
+                        type="checkbox"
+                        id="selectAll"
+                        onchange="toggleAll(this)"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </th>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="productsTableBody">
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Bag.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '🎒'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">College Backpack</div>
+                          <div class="product-sku">SKU: BP-COL-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge-category backpacks">Backpacks</span>
+                    </td>
+                    <td>
+                      <div class="price-col">₹399</div>
+                      <div class="price-original-col">₹699</div>
+                      <div class="price-discount-col">43% OFF</div>
+                    </td>
+                    <td>48</td>
+                    <td><span class="badge-status instock">In Stock</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          title="View"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          title="Edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          title="Delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Set of Books.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '📚'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">Notebook Set (5 Pack)</div>
+                          <div class="product-sku">SKU: ST-NB-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge-category stationery">Stationery</span>
+                    </td>
+                    <td><div class="price-col">₹299</div></td>
+                    <td>120</td>
+                    <td><span class="badge-status instock">In Stock</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Men's Formal Shirt.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '👔'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">Men's Formal Shirt</div>
+                          <div class="product-sku">SKU: FA-MS-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-category fashion">Fashion</span></td>
+                    <td><div class="price-col">₹399</div></td>
+                    <td>35</td>
+                    <td><span class="badge-status instock">In Stock</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Women's Formal Shirt.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '👗'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">Women's Formal Shirt</div>
+                          <div class="product-sku">SKU: FA-WS-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-category fashion">Fashion</span></td>
+                    <td><div class="price-col">₹399</div></td>
+                    <td>28</td>
+                    <td><span class="badge-status instock">In Stock</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Men's Formal Pant.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '👖'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">Men's Formal Pant</div>
+                          <div class="product-sku">SKU: FA-MP-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-category fashion">Fashion</span></td>
+                    <td><div class="price-col">₹449</div></td>
+                    <td>22</td>
+                    <td><span class="badge-status instock">In Stock</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Women's Formal Pant.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '👖'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">Women's Formal Pant</div>
+                          <div class="product-sku">SKU: FA-WP-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-category fashion">Fashion</span></td>
+                    <td><div class="price-col">₹449</div></td>
+                    <td>19</td>
+                    <td>
+                      <span class="badge-status lowstock">Low Stock</span>
+                    </td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Highlighter.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '🖊️'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">Highlighter Set</div>
+                          <div class="product-sku">SKU: ST-HL-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge-category stationery">Stationery</span>
+                    </td>
+                    <td><div class="price-col">₹199</div></td>
+                    <td>200</td>
+                    <td><span class="badge-status instock">In Stock</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Water Bottles.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '🍶'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">Water Bottle</div>
+                          <div class="product-sku">SKU: ST-WB-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge-category stationery">Stationery</span>
+                    </td>
+                    <td><div class="price-col">₹249</div></td>
+                    <td>75</td>
+                    <td><span class="badge-status instock">In Stock</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        style="
+                          accent-color: #4f46e5;
+                          width: 15px;
+                          height: 15px;
+                          cursor: pointer;
+                        "
+                      />
+                    </td>
+                    <td>
+                      <div class="product-cell">
+                        <div class="product-thumb">
+                          <img
+                            src="../images/Desk oragainzer.jpg"
+                            alt=""
+                            onerror="this.parentElement.textContent = '🗂️'"
+                          />
+                        </div>
+                        <div>
+                          <div class="product-name">Desk Organizer</div>
+                          <div class="product-sku">SKU: ST-DO-001</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge-category stationery">Stationery</span>
+                    </td>
+                    <td><div class="price-col">₹449</div></td>
+                    <td>4</td>
+                    <td>
+                      <span class="badge-status lowstock">Low Stock</span>
+                    </td>
+                    <td>
+                      <div class="action-buttons">
+                        <button
+                          class="action-btn view"
+                          onclick="window.open('/product-details', '_blank')"
+                        >
+                          👁
+                        </button>
+                        <button
+                          class="action-btn edit"
+                          onclick="editProduct(this)"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="table-footer">
+                <span
+                  >Showing <strong>1–<span id="showCount">9</span></strong> of
+                  <strong id="totalCount">9</strong> products</span
+                >
+                <div class="pagination-btns">
+                  <button class="page-btn-admin">‹ Prev</button>
+                  <button class="page-btn-admin active">1</button>
+                  <button class="page-btn-admin">Next ›</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXPORT HTML PANEL -->
+            <div
+              id="exportPanel"
+              style="display: none; border-top: 1px solid #f3f4f6"
+            >
+              <div class="card-header">
+                <div>
+                  <h2>📋 Export Product HTML</h2>
+                  <p>
+                    Copy and paste into your shop page's
+                    <code>.product-grid</code>
+                  </p>
+                </div>
+                <button
+                  class="btn-admin-secondary"
+                  style="font-size: 0.8rem"
+                  onclick="copyExportHtml()"
+                >
+                  Copy All
+                </button>
+              </div>
+              <div class="card-body">
+                <p
+                  style="
+                    font-size: 0.82rem;
+                    color: #6b7280;
+                    margin-bottom: 0.75rem;
+                  "
+                >
+                  Paste inside the
+                  <code>&lt;div class="product-grid"&gt;</code> in
+                  <a href="/shop" target="_blank">shop.html</a>,
+                  <a href="/shop-fashion" target="_blank">shop-fashion.html</a>,
+                  <a href="/shop-stationery" target="_blank"
+                    >shop-stationery.html</a
+                  >
+                  or
+                  <a href="/shop-backpacks" target="_blank"
+                    >shop-backpacks.html</a
+                  >.
+                </p>
+                <textarea
+                  class="export-output"
+                  id="exportOutput"
+                  readonly
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== ORDERS ===== -->
+        <div id="section-orders" style="display: none">
+          <div class="breadcrumb-admin">Admin / <span>Orders</span></div>
+          <div class="page-header">
+            <div>
+              <h1>Orders</h1>
+              <p>Manage customer orders</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h2>All Orders</h2></div>
+            <div class="card-body" style="padding: 0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#ORD-2026-001</strong></td>
+                    <td>John Doe</td>
+                    <td>College Backpack × 1, Notebook Set × 2</td>
+                    <td class="price-col">₹1,722</td>
+                    <td>Feb 20, 2026</td>
+                    <td><span class="badge-status lowstock">Pending</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="action-btn edit">✏️</button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ORD-2026-002</strong></td>
+                    <td>John Doe</td>
+                    <td>Notebook Set × 1</td>
+                    <td class="price-col">₹899</td>
+                    <td>Feb 18, 2026</td>
+                    <td><span class="badge-status instock">Delivered</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="action-btn edit">✏️</button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ORD-2026-003</strong></td>
+                    <td>John Doe</td>
+                    <td>Highlighter Set × 2</td>
+                    <td class="price-col">₹499</td>
+                    <td>Feb 15, 2026</td>
+                    <td><span class="badge-status instock">Delivered</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="action-btn edit">✏️</button>
+                        <button
+                          class="action-btn delete"
+                          onclick="deleteRow(this)"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== CATEGORIES ===== -->
+        <div id="section-categories" style="display: none">
+          <div class="breadcrumb-admin">Admin / <span>Categories</span></div>
+          <div class="page-header">
+            <div>
+              <h1>Categories</h1>
+              <p>Manage product categories</p>
+            </div>
+            <button class="btn-admin-primary">＋ Add Category</button>
+          </div>
+          <div class="card">
+            <div class="card-header"><h2>Existing Categories</h2></div>
+            <div class="card-body">
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(3, 1fr);
+                  gap: 1rem;
+                "
+              >
+                <div
+                  style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 1.25rem;
+                    text-align: center;
+                  "
+                >
+                  <div style="font-size: 2.5rem; margin-bottom: 0.5rem">👕</div>
+                  <h3 style="font-weight: 700; font-size: 1rem">Fashion</h3>
+                  <p
+                    style="color: #6b7280; font-size: 0.8rem; margin: 0.25rem 0"
+                  >
+                    4 products
+                  </p>
+                  <div
+                    style="
+                      display: flex;
+                      gap: 0.5rem;
+                      justify-content: center;
+                      margin-top: 0.75rem;
+                    "
+                  >
+                    <button
+                      class="btn-admin-secondary"
+                      style="font-size: 0.8rem; padding: 0.35rem 0.875rem"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      class="btn-admin-danger"
+                      style="font-size: 0.8rem; padding: 0.35rem 0.875rem"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+                <div
+                  style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 1.25rem;
+                    text-align: center;
+                  "
+                >
+                  <div style="font-size: 2.5rem; margin-bottom: 0.5rem">✏️</div>
+                  <h3 style="font-weight: 700; font-size: 1rem">Stationery</h3>
+                  <p
+                    style="color: #6b7280; font-size: 0.8rem; margin: 0.25rem 0"
+                  >
+                    4 products
+                  </p>
+                  <div
+                    style="
+                      display: flex;
+                      gap: 0.5rem;
+                      justify-content: center;
+                      margin-top: 0.75rem;
+                    "
+                  >
+                    <button
+                      class="btn-admin-secondary"
+                      style="font-size: 0.8rem; padding: 0.35rem 0.875rem"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      class="btn-admin-danger"
+                      style="font-size: 0.8rem; padding: 0.35rem 0.875rem"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+                <div
+                  style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 1.25rem;
+                    text-align: center;
+                  "
+                >
+                  <div style="font-size: 2.5rem; margin-bottom: 0.5rem">🎒</div>
+                  <h3 style="font-weight: 700; font-size: 1rem">Backpacks</h3>
+                  <p
+                    style="color: #6b7280; font-size: 0.8rem; margin: 0.25rem 0"
+                  >
+                    1 product
+                  </p>
+                  <div
+                    style="
+                      display: flex;
+                      gap: 0.5rem;
+                      justify-content: center;
+                      margin-top: 0.75rem;
+                    "
+                  >
+                    <button
+                      class="btn-admin-secondary"
+                      style="font-size: 0.8rem; padding: 0.35rem 0.875rem"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      class="btn-admin-danger"
+                      style="font-size: 0.8rem; padding: 0.35rem 0.875rem"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== CUSTOMERS ===== -->
+        <div id="section-customers" style="display: none">
+          <div class="breadcrumb-admin">Admin / <span>Customers</span></div>
+          <div class="page-header">
+            <div>
+              <h1>Customers</h1>
+              <p>View registered users</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body" style="padding: 0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>College</th>
+                    <th>Orders</th>
+                    <th>Joined</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>John Doe</td>
+                    <td>john.doe@college.edu</td>
+                    <td>Stanford University</td>
+                    <td>3</td>
+                    <td>Jan 10, 2026</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== COUPONS ===== -->
+        <div id="section-coupons" style="display: none">
+          <div class="breadcrumb-admin">Admin / <span>Coupons</span></div>
+          <div class="page-header">
+            <div>
+              <h1>Coupons</h1>
+              <p>Create discount codes</p>
+            </div>
+            <button class="btn-admin-primary">＋ Create Coupon</button>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <p style="color: #6b7280; text-align: center; padding: 2rem">
+                No coupons created yet.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SETTINGS ===== -->
+        <div id="section-settings" style="display: none">
+          <div class="breadcrumb-admin">Admin / <span>Settings</span></div>
+          <div class="page-header">
+            <div>
+              <h1>Settings</h1>
+              <p>Configure store settings</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h2>Store Information</h2></div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Store Name</label
+                  ><input type="text" value="CampusCart" />
+                </div>
+                <div class="form-group">
+                  <label>Support Email</label
+                  ><input type="email" value="support@campuscart.com" />
+                </div>
+                <div class="form-group">
+                  <label>Currency</label>
+                  <select>
+                    <option selected>₹ INR</option>
+                    <option>$ USD</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Free Shipping Above (₹)</label
+                  ><input type="number" value="999" />
+                </div>
+              </div>
+              <div class="form-actions">
+                <button
+                  class="btn-admin-primary"
+                  onclick="showToast('✅', 'Settings saved!', 'success')"
+                >
+                  Save Settings
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast success" id="toast">
+      <span id="toastIcon">✅</span>
+      <span id="toastMsg">Done!</span>
+    </div>
+
+    <script>
+      /* =========================================================
+           CAMPUSCART ADMIN — ENHANCED SCRIPT
+           - Login gate (admin / admin123)
+           - localStorage product persistence
+           - HTML export for shop pages
+           - All original UI functions preserved
+           ========================================================= */
+
+      const STORE_KEY = "campuscart_products";
+
+      // ---- Helper: read/write localStorage ----
+      function getStoredProducts() {
+        try {
+          return JSON.parse(localStorage.getItem(STORE_KEY)) || [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function saveStoredProducts(arr) {
+        localStorage.setItem(STORE_KEY, JSON.stringify(arr));
+      }
+
+      // ===== LOGIN GATE =====
+      function handleLogin(event) {
+        event.preventDefault();
+        const u = document.getElementById("lgUser").value.trim();
+        const p = document.getElementById("lgPass").value;
+        if (u === "admin@campuscart.com" && p === "Admin@123") {
+          document.getElementById("loginGate").classList.add("hidden");
+          loadStoredProducts();
+          updateCount();
+        } else {
+          document.getElementById("loginErr").style.display = "block";
+        }
+      }
+
+      // ===== LIVE THUMBNAIL PREVIEW =====
+      function liveThumbPreview() {
+        const file = document.getElementById("productImageFile").value.trim();
+        const thumb = document.getElementById("liveThumb");
+        if (file) {
+          thumb.innerHTML = `<img src="../images/${file}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='🖼️'">`;
+        } else {
+          thumb.innerHTML = "🖼️";
+        }
+      }
+
+      // ===== NAVIGATION =====
+      function showSection(name) {
+        [
+          "dashboard",
+          "products",
+          "orders",
+          "categories",
+          "customers",
+          "coupons",
+          "settings",
+        ].forEach((s) => {
+          const el = document.getElementById("section-" + s);
+          if (el) el.style.display = s === name ? "block" : "none";
+        });
+        document
+          .querySelectorAll(".sidebar-link")
+          .forEach((l) => l.classList.remove("active"));
+        const nav = document.getElementById("nav-" + name);
+        if (nav) nav.classList.add("active");
+      }
+
+      // ===== PRODUCT TABS =====
+      function switchProductTab(tab) {
+        document.getElementById("product-add-panel").style.display =
+          tab === "add" ? "block" : "none";
+        document.getElementById("product-manage-panel").style.display =
+          tab === "manage" ? "block" : "none";
+        document
+          .getElementById("tab-add")
+          .classList.toggle("active", tab === "add");
+        document
+          .getElementById("tab-manage")
+          .classList.toggle("active", tab === "manage");
+      }
+
+      // ===== DISCOUNT CALC =====
+      function calcDiscount() {
+        const price = parseFloat(document.getElementById("productPrice").value);
+        const mrp = parseFloat(document.getElementById("productMrp").value);
+        const disp = document.getElementById("discountDisplay");
+        if (price > 0 && mrp > 0 && mrp > price) {
+          const pct = Math.round(((mrp - price) / mrp) * 100);
+          disp.textContent = pct + "% OFF";
+          disp.style.background = "#ECFDF5";
+          disp.style.borderColor = "#6EE7B7";
+          disp.style.color = "#059669";
+        } else {
+          disp.textContent = "—";
+          disp.style.background = "#F9FAFB";
+          disp.style.borderColor = "#E5E7EB";
+          disp.style.color = "#9CA3AF";
+        }
+      }
+
+      // ===== STATUS LABEL =====
+      document
+        .getElementById("productStatus")
+        .addEventListener("change", function () {
+          document.getElementById("statusLabel").textContent = this.checked
+            ? "In Stock"
+            : "Out of Stock";
+        });
+
+      // ===== IMAGE PREVIEW =====
+      function previewImages(event) {
+        renderPreviews(Array.from(event.target.files).slice(0, 4));
+      }
+
+      function handleDrop(event) {
+        event.preventDefault();
+        document.getElementById("uploadArea").classList.remove("drag-over");
+        renderPreviews(
+          Array.from(event.dataTransfer.files)
+            .filter((f) => f.type.startsWith("image/"))
+            .slice(0, 4),
+        );
+      }
+
+      function renderPreviews(files) {
+        const container = document.getElementById("imagePreview");
+        container.innerHTML = "";
+        files.forEach((file) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const item = document.createElement("div");
+            item.className = "preview-item";
+            item.innerHTML = `<img src="${e.target.result}" alt="Preview"><button class="remove-img" type="button" onclick="this.closest('.preview-item').remove()">✕</button>`;
+            container.appendChild(item);
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // ===== TAGS =====
+      function addTag(event) {
+        if (event.key !== "Enter") return;
+        event.preventDefault();
+        const input = document.getElementById("tagInput");
+        const val = input.value.trim();
+        if (!val) return;
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.innerHTML = `${val} <button type="button" onclick="removeTag(this)">✕</button>`;
+        input.closest(".tag-input-wrapper").insertBefore(tag, input);
+        input.value = "";
+      }
+
+      function removeTag(btn) {
+        btn.closest(".tag").remove();
+      }
+
+      // ===== SPEC ROWS =====
+      function addSpecRow() {
+        const row = document.createElement("div");
+        row.className = "spec-row";
+        row.style.cssText =
+          "display:grid;grid-template-columns:1fr 1fr auto;gap:0.75rem;margin-bottom:0.75rem;";
+        row.innerHTML = `
+                <input type="text" placeholder='Spec name' style="padding:0.6rem 0.875rem;border:1px solid #E5E7EB;border-radius:8px;font-size:0.875rem;outline:none;">
+                <input type="text" placeholder='Value'     style="padding:0.6rem 0.875rem;border:1px solid #E5E7EB;border-radius:8px;font-size:0.875rem;outline:none;">
+                <button type="button" onclick="this.closest('.spec-row').remove()" style="width:36px;height:36px;border:1px solid #FCA5A5;background:white;border-radius:8px;cursor:pointer;color:#EF4444;font-size:1rem;align-self:end;">✕</button>`;
+        document.getElementById("specsContainer").appendChild(row);
+      }
+
+      // ===== ADD PRODUCT — saves to localStorage =====
+      function handleAddProduct(event) {
+        event.preventDefault();
+        const name = document.getElementById("productName").value.trim();
+        const category = document.getElementById("productCategory").value;
+        const price = document.getElementById("productPrice").value;
+        const mrp = document.getElementById("productMrp").value;
+        const stock = document.getElementById("productStock").value;
+        const badge = document.getElementById("productBadge").value.trim();
+        const imageFile = document
+          .getElementById("productImageFile")
+          .value.trim();
+        const rating =
+          parseInt(document.getElementById("productRating").value) || 5;
+        const reviews =
+          parseInt(document.getElementById("productReviews").value) || 0;
+        const desc = document.getElementById("productDesc").value.trim();
+
+        const catLabels = {
+          fashion: "Fashion",
+          stationery: "Stationery",
+          backpacks: "Backpacks",
+        };
+        const catEmojis = { fashion: "👕", stationery: "✏️", backpacks: "🎒" };
+
+        // Auto-compute badge from discount if blank
+        let badgeText = badge;
+        if (!badgeText && price && mrp && parseFloat(mrp) > parseFloat(price)) {
+          const pct = Math.round(((mrp - price) / mrp) * 100);
+          badgeText = pct + "% OFF";
+        }
+
+        let discountHtml = "";
+        if (price && mrp && parseFloat(mrp) > parseFloat(price)) {
+          const pct = Math.round(((mrp - price) / mrp) * 100);
+          discountHtml = `<div class="price-original-col">₹${mrp}</div><div class="price-discount-col">${pct}% OFF</div>`;
+        }
+
+        // Save to localStorage
+        const product = {
+          id: Date.now(),
+          name,
+          category,
+          badge: badgeText,
+          price: parseFloat(price),
+          originalPrice: mrp ? parseFloat(mrp) : null,
+          rating,
+          reviews,
+          image: imageFile,
+          desc,
+          stock: parseInt(stock) || 0,
+          sku:
+            document.getElementById("productSku").value.trim() ||
+            "AUTO-" + Date.now().toString().slice(-4),
+        };
+        const products = getStoredProducts();
+        products.push(product);
+        saveStoredProducts(products);
+
+        // Append row to table
+        appendProductRow(product);
+
+        updateCount();
+        showToast("✅", `"${name}" added to the store!`, "success");
+        resetForm();
+        switchProductTab("manage");
+      }
+
+      // ===== APPEND A PRODUCT ROW =====
+      function appendProductRow(p) {
+        const catLabels = {
+          fashion: "Fashion",
+          stationery: "Stationery",
+          backpacks: "Backpacks",
+        };
+        const catEmojis = { fashion: "👕", stationery: "✏️", backpacks: "🎒" };
+        const discountHtml =
+          p.price && p.originalPrice && p.originalPrice > p.price
+            ? `<div class="price-original-col">₹${p.originalPrice}</div><div class="price-discount-col">${Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)}% OFF</div>`
+            : "";
+        const thumbHtml = p.image
+          ? `<img src="../images/${p.image}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.textContent='${catEmojis[p.category] || "📦"}'">`
+          : catEmojis[p.category] || "📦";
+
+        const tr = document.createElement("tr");
+        tr.dataset.productId = p.id;
+        tr.innerHTML = `
+                <td><input type="checkbox" style="accent-color:#4F46E5;width:15px;height:15px;cursor:pointer;"></td>
+                <td><div class="product-cell">
+                    <div class="product-thumb">${thumbHtml}</div>
+                    <div>
+                        <div class="product-name">${escHtml(p.name)}</div>
+                        <div class="product-sku">SKU: ${escHtml(p.sku || "")}</div>
+                    </div>
+                </div></td>
+                <td><span class="badge-category ${p.category}">${catLabels[p.category] || p.category}</span></td>
+                <td><div class="price-col">₹${p.price}</div>${discountHtml}</td>
+                <td>${p.stock}</td>
+                <td><span class="badge-status instock">In Stock</span></td>
+                <td><div class="action-buttons">
+                    <button class="action-btn view"   title="View" onclick="window.open('/product-details','_blank')">👁</button>
+                    <button class="action-btn edit"   title="Edit" onclick="editProduct(this)">✏️</button>
+                    <button class="action-btn delete" title="Delete" onclick="deleteRow(this)">🗑</button>
+                </div></td>`;
+        document.getElementById("productsTableBody").appendChild(tr);
+      }
+
+      // ===== LOAD localStorage PRODUCTS ON INIT =====
+      function loadStoredProducts() {
+        const products = getStoredProducts();
+        products.forEach((p) => appendProductRow(p));
+      }
+
+      // ===== HTML EXPORT =====
+      function buildProductCardHTML(p) {
+        const stars = "⭐".repeat(p.rating || 5);
+        const badgeHtml = p.badge
+          ? `\n                    <div class="product-badge">${p.badge}</div>`
+          : "";
+        const origPriceHtml = p.originalPrice
+          ? `\n                            <span class="original-price">₹${p.originalPrice}</span>`
+          : "";
+        return `                <!-- ${p.name} -->
+                <div class="product-card">${badgeHtml}
+                    <div class="product-image">
+                        <img src="../images/${p.image || ""}" alt="${escHtml(p.name)}">
+                        <button class="wishlist-btn">❤️</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>${escHtml(p.name)}</h3>
+                        <div class="rating">
+                            <span>${stars}</span>
+                            <span>(${p.reviews || 0})</span>
+                        </div>
+                        <div class="price">
+                            <span class="current-price">₹${p.price}</span>${origPriceHtml}
+                        </div>
+                        <button class="btn btn-primary btn-small">Add to Cart</button>
+                    </div>
+                </div>`;
+      }
+
+      function toggleExportPanel() {
+        const panel = document.getElementById("exportPanel");
+        const visible = panel.style.display !== "none";
+        if (visible) {
+          panel.style.display = "none";
+        } else {
+          const products = getStoredProducts();
+          if (!products.length) {
+            showToast(
+              "ℹ️",
+              "No new products added yet. Add products via the form first.",
+              "error",
+            );
+            return;
+          }
+          const html = products.map(buildProductCardHTML).join("\n\n");
+          document.getElementById("exportOutput").value = html;
+          panel.style.display = "block";
+          panel.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      function copyExportHtml() {
+        const ta = document.getElementById("exportOutput");
+        navigator.clipboard
+          .writeText(ta.value)
+          .then(() => {
+            showToast("📋", "HTML copied to clipboard!", "success");
+          })
+          .catch(() => {
+            ta.select();
+            document.execCommand("copy");
+            showToast("📋", "Copied!", "success");
+          });
+      }
+
+      // ===== HELPER =====
+      function escHtml(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function updateCount() {
+        const c = document
+          .getElementById("productsTableBody")
+          .querySelectorAll("tr").length;
+        const stored = getStoredProducts().length;
+        const manageTab = document.getElementById("tab-manage");
+        if (manageTab) manageTab.textContent = `Manage Products (${c})`;
+        const pcEl = document.getElementById("products-count");
+        if (pcEl) pcEl.textContent = c;
+        const mSub = document.getElementById("manage-subtitle");
+        if (mSub)
+          mSub.textContent = `${c} product${c !== 1 ? "s" : ""} in the store (${stored} added via admin)`;
+      }
+
+      // ===== RESET =====
+      function resetForm() {
+        document.getElementById("addProductForm").reset();
+        document.getElementById("imagePreview").innerHTML = "";
+        document.getElementById("discountDisplay").textContent = "—";
+        document.getElementById("discountDisplay").style.cssText = "";
+        document.getElementById("statusLabel").textContent = "In Stock";
+        document.getElementById("liveThumb").innerHTML = "🖼️";
+      }
+
+      function saveDraft() {
+        showToast("💾", "Draft saved!", "success");
+      }
+
+      // ===== TABLE ACTIONS =====
+      function deleteRow(btn) {
+        if (!confirm("Delete this item?")) return;
+        const tr = btn.closest("tr");
+        const productId = tr.dataset.productId;
+        if (productId) {
+          // Remove from localStorage
+          const remaining = getStoredProducts().filter(
+            (p) => String(p.id) !== String(productId),
+          );
+          saveStoredProducts(remaining);
+        }
+        tr.style.transition = "opacity 0.3s";
+        tr.style.opacity = "0";
+        setTimeout(() => {
+          tr.remove();
+          updateCount();
+          showToast("🗑", "Product deleted.", "success");
+        }, 300);
+      }
+
+      function editProduct(btn) {
+        const row = btn.closest("tr");
+        const name = row.querySelector(".product-name").textContent;
+        const price = row
+          .querySelector(".price-col")
+          .textContent.replace("₹", "");
+        document.getElementById("productName").value = name;
+        document.getElementById("productPrice").value = price;
+        switchProductTab("add");
+        showToast(
+          "✏️",
+          `Editing "${name}" — update fields and re-submit.`,
+          "success",
+        );
+      }
+
+      function bulkDelete() {
+        const checked = document.querySelectorAll(
+          "#productsTableBody input[type=checkbox]:checked",
+        );
+        if (!checked.length) {
+          showToast("ℹ️", "No products selected.", "error");
+          return;
+        }
+        if (!confirm(`Delete ${checked.length} selected product(s)?`)) return;
+        const idsToRemove = [];
+        checked.forEach((cb) => {
+          const tr = cb.closest("tr");
+          if (tr.dataset.productId)
+            idsToRemove.push(String(tr.dataset.productId));
+          tr.style.transition = "opacity 0.3s";
+          tr.style.opacity = "0";
+          setTimeout(() => tr.remove(), 300);
+        });
+        if (idsToRemove.length) {
+          const remaining = getStoredProducts().filter(
+            (p) => !idsToRemove.includes(String(p.id)),
+          );
+          saveStoredProducts(remaining);
+        }
+        setTimeout(updateCount, 350);
+        showToast("🗑", `${checked.length} product(s) deleted.`, "success");
+      }
+
+      // ===== SEARCH / FILTER =====
+      function filterTable(q) {
+        q = q.toLowerCase();
+        document.querySelectorAll("#productsTableBody tr").forEach((r) => {
+          r.style.display = r.textContent.toLowerCase().includes(q)
+            ? ""
+            : "none";
+        });
+      }
+
+      function filterCategory(cat) {
+        document.querySelectorAll("#productsTableBody tr").forEach((r) => {
+          if (!cat) {
+            r.style.display = "";
+            return;
+          }
+          const badge = r.querySelector(".badge-category");
+          r.style.display =
+            badge && badge.classList.contains(cat) ? "" : "none";
+        });
+      }
+
+      function toggleAll(cb) {
+        document
+          .querySelectorAll("#productsTableBody input[type=checkbox]")
+          .forEach((c) => (c.checked = cb.checked));
+      }
+
+      // ===== TOAST =====
+      function showToast(icon, msg, type = "success") {
+        const toast = document.getElementById("toast");
+        document.getElementById("toastIcon").textContent = icon;
+        document.getElementById("toastMsg").textContent = msg;
+        toast.className = `toast ${type} show`;
+        setTimeout(() => toast.classList.remove("show"), 3500);
+      }
+
+      // ===== INIT =====
+      showSection("products");
+      // Auto-unlock if already authenticated this browser session
+      if (sessionStorage.getItem("cc_admin_auth") === "1") {
+        document.getElementById("loginGate").classList.add("hidden");
+        loadStoredProducts();
+        updateCount();
+      }
+
+      // Override handleLogin (defined earlier) to persist session via sessionStorage
+      window.handleLogin = function (event) {
+        event.preventDefault();
+        const u = document.getElementById("lgUser").value.trim();
+        const p = document.getElementById("lgPass").value;
+        if (u === "admin@campuscart.com" && p === "Admin@123") {
+          sessionStorage.setItem("cc_admin_auth", "1");
+          document.getElementById("loginGate").classList.add("hidden");
+          loadStoredProducts();
+          updateCount();
+        } else {
+          document.getElementById("loginErr").style.display = "block";
+        }
+      };
+    </script>
+  </body>
+</html>

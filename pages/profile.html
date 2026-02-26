@@ -1,393 +1,585 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Profile - CampusCart</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/components.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-    <!-- Header -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">
-                    <a href="index.html">CampusCart</a>
-                </div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search for products...">
-                    <button class="search-btn">🔍</button>
-                </div>
-                <div class="nav-icons">
-                    <a href="wishlist.html" class="icon-link">
-                        <span class="icon">❤️</span>
-                        <span class="badge">0</span>
-                    </a>
-                    <a href="cart.html" class="icon-link">
-                        <span class="icon">🛒</span>
-                        <span class="badge">0</span>
-                    </a>
-                    <a href="profile.html" class="icon-link active">
-                        <span class="icon">👤</span>
-                    </a>
-                </div>
-            </nav>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo"><a href="/">CampusCart</a></div>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search for products..."
+            />
+            <button class="search-btn" onclick="goSearch()">&#128269;</button>
+          </div>
+          <div class="nav-icons">
+            <a href="/wishlist" class="icon-link"
+              ><span class="icon">&#10084;&#65039;</span
+              ><span class="badge" id="wishlistBadge">0</span></a
+            >
+            <a href="/cart" class="icon-link"
+              ><span class="icon">&#128722;</span
+              ><span class="badge" id="cartBadge">0</span></a
+            >
+            <a href="/profile" class="icon-link" id="profileLink"
+              ><span class="icon">&#128100;</span></a
+            >
+            <a href="/admin" class="admin-login-btn">ADMIN LOGIN</a>
+          </div>
+        </nav>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
-
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <div class="container">
-            <a href="index.html">Home</a> / <span>My Profile</span>
-        </div>
-    </div>
-
-    <!-- Profile Page -->
     <section class="profile-page">
-        <div class="container">
-            <div class="profile-layout">
-                <!-- Sidebar Navigation -->
-                <aside class="profile-sidebar">
-                    <div class="profile-card">
-                        <div class="profile-avatar">
-                            <img src="https://via.placeholder.com/100x100" alt="User Avatar">
-                        </div>
-                        <h3>John Doe</h3>
-                        <p>john.doe@college.edu</p>
-                    </div>
-
-                    <nav class="profile-nav">
-                        <a href="#dashboard" class="profile-nav-link active">
-                            <span>📊</span> Dashboard
-                        </a>
-                        <a href="#orders" class="profile-nav-link">
-                            <span>📦</span> My Orders
-                        </a>
-                        <a href="#settings" class="profile-nav-link">
-                            <span>⚙️</span> Account Settings
-                        </a>
-                        <a href="#addresses" class="profile-nav-link">
-                            <span>📍</span> Saved Addresses
-                        </a>
-                        <a href="login.html" class="profile-nav-link logout">
-                            <span>🚪</span> Logout
-                        </a>
-                    </nav>
-                </aside>
-
-                <!-- Main Content -->
-                <div class="profile-main">
-                    <!-- Dashboard Tab -->
-                    <div class="profile-content active" id="dashboard">
-                        <h1>Welcome back, John!</h1>
-                        <p class="subtitle">Here's what's happening with your account</p>
-
-                        <div class="stats-grid">
-                            <div class="stat-card">
-                                <div class="stat-icon">📦</div>
-                                <div class="stat-info">
-                                    <h3>12</h3>
-                                    <p>Total Orders</p>
-                                </div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">⏳</div>
-                                <div class="stat-info">
-                                    <h3>2</h3>
-                                    <p>Pending Orders</p>
-                                </div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">✅</div>
-                                <div class="stat-info">
-                                    <h3>10</h3>
-                                    <p>Completed</p>
-                                </div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">❤️</div>
-                                <div class="stat-info">
-                                    <h3>3</h3>
-                                    <p>Wishlist Items</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="recent-orders">
-                            <h2>Recent Orders</h2>
-                            <div class="orders-table">
-                                <div class="order-row header">
-                                    <div>Order ID</div>
-                                    <div>Date</div>
-                                    <div>Total</div>
-                                    <div>Status</div>
-                                    <div>Action</div>
-                                </div>
-                                <div class="order-row">
-                                    <div>#ORD-2026-001</div>
-                                    <div>Feb 20, 2026</div>
-                                    <div>₹1,722</div>
-                                    <div><span class="status-badge pending">Pending</span></div>
-                                    <div><a href="#" class="btn-link">View Details</a></div>
-                                </div>
-                                <div class="order-row">
-                                    <div>#ORD-2026-002</div>
-                                    <div>Feb 18, 2026</div>
-                                    <div>₹899</div>
-                                    <div><span class="status-badge completed">Delivered</span></div>
-                                    <div><a href="#" class="btn-link">View Details</a></div>
-                                </div>
-                                <div class="order-row">
-                                    <div>#ORD-2026-003</div>
-                                    <div>Feb 15, 2026</div>
-                                    <div>₹499</div>
-                                    <div><span class="status-badge completed">Delivered</span></div>
-                                    <div><a href="#" class="btn-link">View Details</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Orders Tab -->
-                    <div class="profile-content" id="orders">
-                        <h1>My Orders</h1>
-                        <div class="order-filters">
-                            <button class="filter-btn active">All</button>
-                            <button class="filter-btn">Pending</button>
-                            <button class="filter-btn">Delivered</button>
-                            <button class="filter-btn">Cancelled</button>
-                        </div>
-
-                        <div class="order-list">
-                            <!-- Order Item 1 -->
-                            <div class="order-card">
-                                <div class="order-header">
-                                    <div class="order-info">
-                                        <h3>Order #ORD-2026-001</h3>
-                                        <p>Placed on February 20, 2026</p>
-                                    </div>
-                                    <span class="status-badge pending">Pending</span>
-                                </div>
-                                <div class="order-items">
-                                    <div class="order-product">
-                                        <img src="https://via.placeholder.com/80x80" alt="Product">
-                                        <div class="product-details">
-                                            <h4>College Backpack</h4>
-                                            <p>Quantity: 1</p>
-                                        </div>
-                                        <p class="product-price">₹399</p>
-                                    </div>
-                                </div>
-                                <div class="order-footer">
-                                    <p class="order-total">Total: <strong>₹1,722</strong></p>
-                                    <div class="order-actions">
-                                        <button class="btn btn-secondary btn-small">Track Order</button>
-                                        <button class="btn btn-outline btn-small">Cancel Order</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Order Item 2 -->
-                            <div class="order-card">
-                                <div class="order-header">
-                                    <div class="order-info">
-                                        <h3>Order #ORD-2026-002</h3>
-                                        <p>Placed on February 18, 2026</p>
-                                    </div>
-                                    <span class="status-badge completed">Delivered</span>
-                                </div>
-                                <div class="order-items">
-                                    <div class="order-product">
-                                        <img src="https://via.placeholder.com/80x80" alt="Product">
-                                        <div class="product-details">
-                                            <h4>Organic Chemistry Textbook</h4>
-                                            <p>Quantity: 1</p>
-                                        </div>
-                                        <p class="product-price">₹899</p>
-                                    </div>
-                                </div>
-                                <div class="order-footer">
-                                    <p class="order-total">Total: <strong>₹899</strong></p>
-                                    <div class="order-actions">
-                                        <button class="btn btn-secondary btn-small">Reorder</button>
-                                        <button class="btn btn-outline btn-small">Write Review</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Settings Tab -->
-                    <div class="profile-content" id="settings">
-                        <h1>Account Settings</h1>
-                        <form class="settings-form">
-                            <div class="form-section">
-                                <h2>Personal Information</h2>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="firstName">First Name</label>
-                                        <input type="text" id="firstName" value="John">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastName">Last Name</label>
-                                        <input type="text" id="lastName" value="Doe">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" value="john.doe@college.edu">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="tel" id="phone" value="+1 (555) 123-4567">
-                                </div>
-                                <div class="form-group">
-                                    <label for="college">College/University</label>
-                                    <select id="college">
-                                        <option value="stanford" selected>Stanford University</option>
-                                        <option value="harvard">Harvard University</option>
-                                        <option value="mit">MIT</option>
-                                        <option value="yale">Yale University</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-section">
-                                <h2>Change Password</h2>
-                                <div class="form-group">
-                                    <label for="currentPassword">Current Password</label>
-                                    <input type="password" id="currentPassword">
-                                </div>
-                                <div class="form-group">
-                                    <label for="newPassword">New Password</label>
-                                    <input type="password" id="newPassword">
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirmNewPassword">Confirm New Password</label>
-                                    <input type="password" id="confirmNewPassword">
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                        </form>
-                    </div>
-
-                    <!-- Addresses Tab -->
-                    <div class="profile-content" id="addresses">
-                        <div class="section-header">
-                            <h1>Saved Addresses</h1>
-                            <button class="btn btn-primary">Add New Address</button>
-                        </div>
-
-                        <div class="address-grid">
-                            <!-- Address Card 1 -->
-                            <div class="address-card">
-                                <div class="address-header">
-                                    <h3>Home</h3>
-                                    <span class="default-badge">Default</span>
-                                </div>
-                                <p class="address-details">
-                                    John Doe<br>
-                                    123 College Avenue<br>
-                                    Stanford, CA 94305<br>
-                                    United States<br>
-                                    Phone: +1 (555) 123-4567
-                                </p>
-                                <div class="address-actions">
-                                    <button class="btn-link">Edit</button>
-                                    <button class="btn-link danger">Delete</button>
-                                </div>
-                            </div>
-
-                            <!-- Address Card 2 -->
-                            <div class="address-card">
-                                <div class="address-header">
-                                    <h3>Dorm</h3>
-                                </div>
-                                <p class="address-details">
-                                    John Doe<br>
-                                    Dorm Building A, Room 201<br>
-                                    Stanford University<br>
-                                    Stanford, CA 94305<br>
-                                    United States<br>
-                                    Phone: +1 (555) 123-4567
-                                </p>
-                                <div class="address-actions">
-                                    <button class="btn-link">Edit</button>
-                                    <button class="btn-link">Set as Default</button>
-                                    <button class="btn-link danger">Delete</button>
-                                </div>
-                            </div>
-
-                            <!-- Add New Address Card -->
-                            <div class="address-card add-new">
-                                <div class="add-icon">+</div>
-                                <p>Add New Address</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="profile-layout">
+          <!-- Sidebar -->
+          <aside class="profile-sidebar">
+            <div class="user-card">
+              <div
+                class="user-avatar"
+                id="userAvatar"
+                style="
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 50%;
+                  background: #4f46e5;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #fff;
+                  font-size: 2rem;
+                  margin: 0 auto 1rem;
+                "
+              >
+                &#128100;
+              </div>
+              <h3 id="sidebarName">Loading...</h3>
+              <p
+                id="sidebarEmail"
+                style="color: #6b7280; font-size: 0.9rem"
+              ></p>
             </div>
+            <nav class="profile-nav">
+              <a
+                href="#"
+                class="profile-nav-item active"
+                data-tab="dashboard"
+                onclick="switchTab('dashboard', this)"
+                >&#127968; Dashboard</a
+              >
+              <a
+                href="#"
+                class="profile-nav-item"
+                data-tab="orders"
+                onclick="switchTab('orders', this)"
+                >&#128230; My Orders</a
+              >
+              <a
+                href="#"
+                class="profile-nav-item"
+                data-tab="addresses"
+                onclick="switchTab('addresses', this)"
+                >&#128205; Addresses</a
+              >
+              <a
+                href="#"
+                class="profile-nav-item"
+                data-tab="settings"
+                onclick="switchTab('settings', this)"
+                >&#9881;&#65039; Settings</a
+              >
+              <a
+                href="#"
+                class="profile-nav-item"
+                onclick="logout()"
+                style="color: #ef4444"
+                >&#128274; Logout</a
+              >
+            </nav>
+          </aside>
+
+          <!-- Content -->
+          <div class="profile-content">
+            <!-- Dashboard Tab -->
+            <div class="tab-panel active" id="tab-dashboard">
+              <h2>Dashboard</h2>
+              <div
+                class="stats-grid"
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(3, 1fr);
+                  gap: 1rem;
+                  margin: 1.5rem 0;
+                "
+              >
+                <div
+                  class="stat-card"
+                  style="
+                    background: #f0fdf4;
+                    border-radius: 12px;
+                    padding: 1.5rem;
+                    text-align: center;
+                  "
+                >
+                  <div style="font-size: 2rem; color: #10b981" id="statOrders">
+                    0
+                  </div>
+                  <p style="color: #6b7280; margin: 0">Total Orders</p>
+                </div>
+                <div
+                  class="stat-card"
+                  style="
+                    background: #fff7ed;
+                    border-radius: 12px;
+                    padding: 1.5rem;
+                    text-align: center;
+                  "
+                >
+                  <div style="font-size: 2rem; color: #f59e0b" id="statPending">
+                    0
+                  </div>
+                  <p style="color: #6b7280; margin: 0">Pending</p>
+                </div>
+                <div
+                  class="stat-card"
+                  style="
+                    background: #eff6ff;
+                    border-radius: 12px;
+                    padding: 1.5rem;
+                    text-align: center;
+                  "
+                >
+                  <div style="font-size: 2rem; color: #3b82f6" id="statSpent">
+                    &#8377;0
+                  </div>
+                  <p style="color: #6b7280; margin: 0">Total Spent</p>
+                </div>
+              </div>
+              <h3>Recent Orders</h3>
+              <div id="recentOrders">
+                <div style="color: #6b7280">Loading...</div>
+              </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div class="tab-panel" id="tab-orders" style="display: none">
+              <h2>My Orders</h2>
+              <div id="allOrders">
+                <div style="color: #6b7280">Loading...</div>
+              </div>
+            </div>
+
+            <!-- Addresses Tab -->
+            <div class="tab-panel" id="tab-addresses" style="display: none">
+              <h2>Saved Addresses</h2>
+              <div id="addressList">
+                <div style="color: #6b7280">Loading...</div>
+              </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-panel" id="tab-settings" style="display: none">
+              <h2>Account Settings</h2>
+              <form
+                id="profileForm"
+                onsubmit="saveProfile(event)"
+                style="max-width: 500px"
+              >
+                <div class="form-group" style="margin-bottom: 1rem">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    id="settingsName"
+                    class="form-input"
+                    style="
+                      width: 100%;
+                      padding: 0.75rem;
+                      border: 1px solid #ddd;
+                      border-radius: 8px;
+                      margin-top: 0.3rem;
+                    "
+                  />
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    id="settingsEmail"
+                    class="form-input"
+                    style="
+                      width: 100%;
+                      padding: 0.75rem;
+                      border: 1px solid #ddd;
+                      border-radius: 8px;
+                      margin-top: 0.3rem;
+                    "
+                  />
+                </div>
+                <div class="form-group" style="margin-bottom: 1.5rem">
+                  <label>Phone</label>
+                  <input
+                    type="tel"
+                    id="settingsPhone"
+                    class="form-input"
+                    style="
+                      width: 100%;
+                      padding: 0.75rem;
+                      border: 1px solid #ddd;
+                      border-radius: 8px;
+                      margin-top: 0.3rem;
+                    "
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Save Changes
+                </button>
+              </form>
+              <hr style="margin: 2rem 0" />
+              <h3>Change Password</h3>
+              <form
+                id="passwordForm"
+                onsubmit="changePassword(event)"
+                style="max-width: 500px"
+              >
+                <div class="form-group" style="margin-bottom: 1rem">
+                  <label>Current Password</label>
+                  <input
+                    type="password"
+                    id="currentPass"
+                    class="form-input"
+                    style="
+                      width: 100%;
+                      padding: 0.75rem;
+                      border: 1px solid #ddd;
+                      border-radius: 8px;
+                      margin-top: 0.3rem;
+                    "
+                    required
+                  />
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem">
+                  <label>New Password</label>
+                  <input
+                    type="password"
+                    id="newPass"
+                    class="form-input"
+                    style="
+                      width: 100%;
+                      padding: 0.75rem;
+                      border: 1px solid #ddd;
+                      border-radius: 8px;
+                      margin-top: 0.3rem;
+                    "
+                    required
+                  />
+                </div>
+                <div class="form-group" style="margin-bottom: 1.5rem">
+                  <label>Confirm New Password</label>
+                  <input
+                    type="password"
+                    id="confirmPass"
+                    class="form-input"
+                    style="
+                      width: 100%;
+                      padding: 0.75rem;
+                      border: 1px solid #ddd;
+                      border-radius: 8px;
+                      margin-top: 0.3rem;
+                    "
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-secondary">
+                  Update Password
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>CampusCart</h3>
-                    <p>Your one-stop shop for all campus needs.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Shop</h4>
-                    <ul>
-                        <li><a href="shop.html">All Products</a></li>
-                        <li><a href="shop.html">Fashion</a></li>
-                        <li><a href="shop.html">Stationery</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>About</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 CampusCart. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">Instagram</a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <h3>CampusCart</h3>
+            <p>Your one-stop shop for all campus needs.</p>
+          </div>
+          <div class="footer-column">
+            <h4>Shop</h4>
+            <ul>
+              <li><a href="/shop">All Products</a></li>
+              <li><a href="/shop-fashion">Fashion</a></li>
+              <li><a href="/shop-stationery">Stationery</a></li>
+              <li><a href="/shop-backpacks">Backpacks</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Help</h4>
+            <ul>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/about">About Us</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 CampusCart. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
-</body>
+    <script src="/js/app.js"></script>
+    <script>
+      requireAuth();
 
+      function switchTab(tabName, el) {
+        document.querySelectorAll(".tab-panel").forEach(function (p) {
+          p.style.display = "none";
+        });
+        document.getElementById("tab-" + tabName).style.display = "block";
+        document.querySelectorAll(".profile-nav-item").forEach(function (a) {
+          a.classList.remove("active");
+        });
+        if (el) el.classList.add("active");
+      }
+
+      function logout() {
+        clearAuth();
+        window.location.href = "/login";
+      }
+
+      function orderStatusBadge(status) {
+        const colors = {
+          pending: "#F59E0B",
+          processing: "#3B82F6",
+          shipped: "#8B5CF6",
+          delivered: "#10B981",
+          cancelled: "#EF4444",
+        };
+        const color = colors[status] || "#6B7280";
+        return (
+          '<span style="background:' +
+          color +
+          "20;color:" +
+          color +
+          ';padding:.2rem .6rem;border-radius:20px;font-size:.8rem;font-weight:600">' +
+          status.charAt(0).toUpperCase() +
+          status.slice(1) +
+          "</span>"
+        );
+      }
+
+      function renderOrders(orders, containerId) {
+        const el = document.getElementById(containerId);
+        if (!orders.length) {
+          el.innerHTML =
+            '<p style="color:#6B7280">No orders yet. <a href="/shop">Start shopping!</a></p>';
+          return;
+        }
+        el.innerHTML =
+          '<table style="width:100%;border-collapse:collapse">' +
+          '<thead><tr style="border-bottom:2px solid #e5e7eb">' +
+          '<th style="text-align:left;padding:.75rem">Order ID</th>' +
+          '<th style="text-align:left;padding:.75rem">Date</th>' +
+          '<th style="text-align:right;padding:.75rem">Amount</th>' +
+          '<th style="text-align:center;padding:.75rem">Status</th></tr></thead><tbody>' +
+          orders
+            .map(function (o) {
+              const d = new Date(o.created_at).toLocaleDateString("en-IN", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              });
+              return (
+                '<tr style="border-bottom:1px solid #f3f4f6">' +
+                '<td style="padding:.75rem"><a href="#" style="color:#4F46E5">#ORD-' +
+                String(o.id).padStart(4, "0") +
+                "</a></td>" +
+                '<td style="padding:.75rem">' +
+                d +
+                "</td>" +
+                '<td style="padding:.75rem;text-align:right">&#8377;' +
+                parseFloat(o.total_amount || o.amount || 0).toLocaleString(
+                  "en-IN",
+                ) +
+                "</td>" +
+                '<td style="padding:.75rem;text-align:center">' +
+                orderStatusBadge(o.status || "pending") +
+                "</td></tr>"
+              );
+            })
+            .join("") +
+          "</tbody></table>";
+      }
+
+      async function loadProfile() {
+        const [userRes, ordersRes] = await Promise.all([
+          apiFetch("/users/profile").catch(function () {
+            return { ok: false, data: {} };
+          }),
+          apiFetch("/orders").catch(function () {
+            return { ok: false, data: {} };
+          }),
+        ]);
+
+        const user =
+          userRes.data && userRes.data.data && userRes.data.data.user
+            ? userRes.data.data.user
+            : {};
+        const _or =
+          ordersRes.data && ordersRes.data.data
+            ? ordersRes.data.data
+            : ordersRes.data || {};
+        // getMyOrders spreads result directly: {status,orders,total,page,limit}
+        const orders =
+          _or.orders || (ordersRes.data && ordersRes.data.orders) || [];
+
+        if (user && user.name) {
+          document.getElementById("sidebarName").textContent = user.name;
+          document.getElementById("sidebarEmail").textContent =
+            user.email || "";
+          document.getElementById("settingsName").value = user.name || "";
+          document.getElementById("settingsEmail").value = user.email || "";
+          document.getElementById("settingsPhone").value = user.phone || "";
+          document.title = user.name + " - CampusCart";
+        }
+
+        const pending = orders.filter(function (o) {
+          return o.status === "pending" || o.status === "processing";
+        });
+        const spent = orders.reduce(function (s, o) {
+          return s + parseFloat(o.total_amount || o.amount || 0);
+        }, 0);
+        document.getElementById("statOrders").textContent = orders.length;
+        document.getElementById("statPending").textContent = pending.length;
+        document.getElementById("statSpent").textContent =
+          "&#8377;" + spent.toLocaleString("en-IN");
+
+        renderOrders(orders.slice(0, 5), "recentOrders");
+        renderOrders(orders, "allOrders");
+
+        // Addresses placeholder (no DB table shown in requirements but handle gracefully)
+        const _aR = await apiFetch("/users/addresses").catch(function () {
+          return { ok: false, data: {} };
+        });
+        const _aD = _aR.data && _aR.data.data ? _aR.data.data : _aR.data || {};
+        const addrs = _aD.addresses || [];
+        const addrEl = document.getElementById("addressList");
+        if (addrs.length) {
+          addrEl.innerHTML =
+            addrs
+              .map(function (a) {
+                return (
+                  '<div style="border:1px solid #e5e7eb;border-radius:10px;padding:1rem;margin-bottom:1rem"><p style="margin:0">' +
+                  a.address_line +
+                  "<br>" +
+                  a.city +
+                  ", " +
+                  a.state +
+                  " " +
+                  a.pincode +
+                  "</p></div>"
+                );
+              })
+              .join("") +
+            '<button class="btn btn-outline" style="margin-top:1rem" onclick="addAddress()">+ Add New Address</button>';
+        } else {
+          addrEl.innerHTML =
+            '<p style="color:#6B7280">No saved addresses.</p><button class="btn btn-outline" onclick="addAddress()">+ Add Address</button>';
+        }
+      }
+
+      function addAddress() {
+        const addr = prompt("Enter your address:");
+        if (!addr) return;
+        apiFetch("/users/addresses", {
+          method: "POST",
+          body: JSON.stringify({ address: addr }),
+        })
+          .then(function () {
+            showToast("Address saved!");
+            loadProfile();
+          })
+          .catch(function () {});
+      }
+
+      async function saveProfile(e) {
+        e.preventDefault();
+        const _pu = await apiFetch("/users/profile", {
+          method: "PUT",
+          body: JSON.stringify({
+            name: document.getElementById("settingsName").value.trim(),
+            email: document.getElementById("settingsEmail").value.trim(),
+            phone: document.getElementById("settingsPhone").value.trim(),
+          }),
+        }).catch(function () {
+          return { ok: false, data: {} };
+        });
+        if (_pu.ok) {
+          showToast("Profile updated!");
+          loadProfile();
+        } else
+          showToast(
+            (_pu.data && _pu.data.message) || "Failed to update profile",
+            "error",
+          );
+      }
+
+      async function changePassword(e) {
+        e.preventDefault();
+        const np = document.getElementById("newPass").value;
+        const cp = document.getElementById("confirmPass").value;
+        if (np !== cp) {
+          showToast("Passwords do not match", "error");
+          return;
+        }
+        const _pw = await apiFetch("/users/password", {
+          method: "PATCH",
+          body: JSON.stringify({
+            currentPassword: document.getElementById("currentPass").value,
+            newPassword: np,
+          }),
+        }).catch(function () {
+          return { ok: false, data: {} };
+        });
+        if (_pw.ok) {
+          showToast("Password updated!");
+          document.getElementById("passwordForm").reset();
+        } else
+          showToast(
+            (_pw.data && _pw.data.message) || "Failed to update password",
+            "error",
+          );
+      }
+
+      // Handle tab from URL hash
+      const hash = window.location.hash.replace("#", "");
+      if (hash && document.getElementById("tab-" + hash)) {
+        const link = document.querySelector('[data-tab="' + hash + '"]');
+        switchTab(hash, link);
+      }
+
+      loadProfile();
+    </script>
+  </body>
 </html>
